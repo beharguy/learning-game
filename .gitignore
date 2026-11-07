@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+.DS_Store
+.cache/
+*.log
+.venv-voice/
+docs/audio-samples/
+docs/screenshots/
+.env
+.env.*
+!.env.example
