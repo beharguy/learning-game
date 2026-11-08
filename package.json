@@ -11,6 +11,7 @@
     "test": "node --test tests/*.test.mjs",
     "audio": "node scripts/generate-audio.mjs",
     "test:browser": "node scripts/qa-neighborhood.mjs",
+    "test:map": "node scripts/qa-map-layout.mjs",
     "test:release": "node scripts/qa-release.mjs",
     "test:audio-update": "node scripts/qa-audio-update.mjs"
   },

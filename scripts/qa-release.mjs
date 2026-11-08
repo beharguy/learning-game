@@ -50,9 +50,17 @@ try{
  await page.locator('[data-action="repeat"]').click();await page.waitForFunction(()=>{const a=document.querySelector('audio');return a.currentTime>.2&&!a.error;},{timeout:15000});
  const audioResult=await page.evaluate(async()=>{const a=document.querySelector('audio'),r=await fetch(a.currentSrc,{headers:{Range:'bytes=0-99'}});return{status:r.status,bytes:(await r.arrayBuffer()).byteLength,mediaError:a.error?.code||null};});assert.equal(audioResult.status,206);assert.equal(audioResult.bytes,100);assert.equal(audioResult.mediaError,null);
  await page.screenshot({path:out+'/release-map.png'});
+ // The portrait artwork must already be cached before the first offline rotation.
+ const beforeRotation=await state();
+ await page.setViewportSize({width:800,height:1280});
+ await page.waitForFunction(()=>{const image=document.querySelector('.backdrop');return image.complete&&image.naturalWidth===1024&&image.currentSrc.endsWith('neighborhood-portrait.webp');});
+ await page.reload();await page.locator('.neighbor').first().waitFor();
+ assert.ok(await page.locator('.backdrop').evaluate(image=>image.complete&&image.naturalWidth===1024));
+ assert.deepEqual(await state(),beforeRotation);
+ await page.screenshot({path:out+'/release-portrait-map.png'});
  await context.setOffline(false);await page.setViewportSize({width:800,height:1280});await page.goto(base+'#home');await page.screenshot({path:out+'/release-portrait-welcome.png'});
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:out+'/release-phone-welcome.png'});
  assert.deepEqual(errors,[]);
- const report={subpath:prefix,fullRounds:GAMES.length,replay:true,exportImport:true,reset:true,puppetActor:true,offlineGames:6,cachedAssets:cached,offlineAudio:audioResult,errors};
+ const report={subpath:prefix,fullRounds:GAMES.length,replay:true,exportImport:true,reset:true,puppetActor:true,offlineGames:6,cachedAssets:cached,offlineAudio:audioResult,offlinePortraitRotation:true,errors};
  await writeFile(out+'/release-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
 }finally{await context.close();await browser.close();await new Promise(resolve=>server.close(resolve));}

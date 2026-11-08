@@ -21,11 +21,13 @@ function go(path){clearTimeout(transitionTimer);voice.stop();if(location.hash===
 const path=()=>location.hash.slice(1).split('/');
 const asset=name=>`./assets/neighborhood/${name}.webp`;
 function scene(name,content,classes=''){
- return `<main class="scene ${classes}" style="--scene-image:url('${new URL(asset(name),document.baseURI).href}')"><div class="world"><img class="backdrop" src="${asset(name)}" alt="" draggable="false" fetchpriority="high">${content}</div></main>`;
+ const backdrop=`<img class="backdrop" src="${asset(name)}" alt="" draggable="false" fetchpriority="high">`;
+ const picture=name==='neighborhood'?`<picture><source media="(orientation: portrait)" srcset="${asset('neighborhood-portrait')}">${backdrop}</picture>`:backdrop;
+ return `<main class="scene ${classes}" style="--scene-image:url('${new URL(asset(name),document.baseURI).href}')"><div class="world">${picture}${content}</div></main>`;
 }
-function controls(title,{home=true,parents=false,game=false}={}){
+function controls(title,{home=true,parents=false,game=false,map=false}={}){
  return `<header class="hud"><div class="hud-left">${home?btn('home','חזרה לשכונה',icon('home'),'round-button home-control'):''}${parents?btn('parents','הגדרות להורים',icon('settings'),'round-button parent-control'):''}</div><h1 class="title-pill">${title}</h1></header>
- <div class="bottom-controls">${btn('repeat','שמיעת ההוראה שוב',icon('volume'),'round-button speak-control')}${game?btn('help','עזרה — הקראה ורמז',icon('help'),'round-button hint-control'):btn('sound',state.sound?'כיבוי צליל':'הפעלת צליל',icon(state.sound?'volume':'mute'),'round-button sound-control',`aria-pressed="${state.sound}"`)}</div>`;
+ <div class="bottom-controls">${map?'':btn('repeat','שמיעת ההוראה שוב',icon('volume'),'round-button speak-control')}${game?btn('help','עזרה — הקראה ורמז',icon('help'),'round-button hint-control'):btn('sound',state.sound?'כיבוי צליל':'הפעלת צליל',icon(state.sound?'volume':'mute'),'round-button sound-control',`aria-pressed="${state.sound}"`)}</div>`;
 }
 function welcome(){
  return scene('welcome',`<section class="welcome-copy"><span class="welcome-kicker">לְגַלּוֹת. לְשַׂחֵק. לִלְמֹד.</span><h1>הַשְּׁכוּנָה<br><span>שֶׁל עַלְמָה</span></h1><button class="start-button" data-action="enter">${icon('play')} <span>נְשַׂחֵק יַחַד</span></button></section>`,'welcome-scene')+controls('',{home:false,parents:true});
@@ -36,9 +38,8 @@ function neighborhood(){
  const hot=GAMES.map(g=>{const unlocked=available(g.id,state.page).length>0,count=state.stats[g.id]?.correct||0;
   return `<button class="neighbor ${unlocked?'':'sleeping'} ${rec?.id===g.id?'inviting':''}" data-action="visit" data-game="${g.id}" style="--x:${g.x}%;--y:${g.y}%" aria-label="${esc(g.person)} — ${unlocked?'להתחיל לשחק':`נפתח בעמוד ${g.start}`}" aria-disabled="${!unlocked}"><span class="neighbor-bubble">${unlocked?pic(g.symbol):icon('lock')}<span class="mini-play">${icon(unlocked?'play':'lock')}</span></span><span class="neighbor-ring"></span><span class="neighbor-name">${g.person}${count?` <small>★ ${count}</small>`:''}</span></button>`;
  }).join('');
- const trail=Array.from({length:6},(_,i)=>`<span class="path-print" style="--i:${i}">✦</span>`).join('');
- return scene('neighborhood',hot+`<div class="map-trail" aria-hidden="true">${trail}</div>`,'map-scene')+controls('הַשְּׁכוּנָה שֶׁל עַלְמָה',{home:false,parents:true})+
- `<div class="map-invitation">${icon('play')} <span>לְחִיצָה עַל דְּמוּת פּוֹתַחַת מִשְׂחָק</span></div>${state.lastGame&&state.active?btn('resume','להמשיך מהמשחק האחרון',`${icon('undo')} לְהַמְשִׁיךְ`,'resume-button'):''}`;
+ return scene('neighborhood',hot,'map-scene')+controls('הַשְּׁכוּנָה שֶׁל עַלְמָה',{home:false,parents:true,map:true})+
+ `<footer class="map-footer">${btn('repeat','שמיעת ההוראה שוב',`${icon('volume')} <span>לְחִיצָה עַל דְּמוּת פּוֹתַחַת מִשְׂחָק</span>`,'map-invitation')}${state.lastGame&&state.active?btn('resume','להמשיך מהמשחק האחרון',`${icon('undo')} לְהַמְשִׁיךְ`,'resume-button'):''}</footer>`;
 }
 function persistActive(){if(session&&!session.solved)state.active={game:session.game.id,id:session.q.id,round:session.round,helped:session.helped};else state.active=null;save();}
 function createSession(id){
