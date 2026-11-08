@@ -1,12 +1,13 @@
 // Optional build-time operation: only game text is sent for speech generation.
 // Ordinary build/deploy uses the already shipped MP3s, without any voice service.
+import { allAudioTexts } from '../src/neighborhood/content.js';
 import { lessons } from '../src/curriculum.js';
 import { audioKey, narrationTexts } from '../src/narration.js';
 import { pronunciationText } from '../src/pronunciation.js';
 import { mkdir, writeFile, rm, readdir, copyFile, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
-const transcript=narrationTexts(lessons).map(text=>{
+const transcript=[...new Set([...narrationTexts(lessons),...allAudioTexts()])].map(text=>{
   const spokenText=pronunciationText(text);
   return {id:audioKey(text),text,spokenText,cacheId:audioKey(spokenText)};
 });

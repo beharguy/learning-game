@@ -1,0 +1,84 @@
+{
+  "generator": "Built-in imagegen",
+  "date": "2026-11-08",
+  "purpose": "Production assets derived from the parent-approved isometric concepts. Hebrew text, controls and answers are rendered in HTML, not baked into images.",
+  "assets": [
+    {
+      "id": "01-noa-kitchen",
+      "path": "public/assets/neighborhood/01-noa-kitchen.webp",
+      "prompt": "Use case: precise-object-edit. Asset type: production game background, landscape 1536x1024. Input 1 is the EDIT TARGET, approved exact game artwork. Preserve the original framing, camera, positions, characters, faces, colors, buildings and lighting with maximum fidelity. Make only these changes for a live interactive interface: Remove the soup illustration and rays on the central recipe board, remove the letter and vowel on its lower panel, and REMOVE BOTH entire loose answer tiles on the counter (reconstruct the wooden countertop). Keep the recipe board, frame and blank recessed slots. No other soup elsewhere needs removal. Also remove the top-left white home button, top-right white title pill and bottom-left white speaker button completely, restoring underlying scenery. Absolutely NO text, letters, numbers, icons, buttons or replacement UI. This is a clean background for code-rendered controls, not a redesign. Keep original 3:2 composition.",
+      "references": [
+        "design/alma-neighborhood/games/01-noa-kitchen.png"
+      ]
+    },
+    {
+      "id": "02-avi-garden",
+      "path": "public/assets/neighborhood/02-avi-garden.webp",
+      "prompt": "Use case: precise-object-edit. Asset type: production game background, landscape 1536x1024. Input 1 is the EDIT TARGET, approved exact game artwork. Preserve the original framing, camera, positions, characters, faces, colors, buildings and lighting with maximum fidelity. Make only these changes for a live interactive interface: Remove the entire white speech bubble including tail from above the planter; reconstruct canal/greenery behind it. REMOVE all three seed packets completely, reconstruct the wooden table beneath. Keep planter and its three small shoots. Also remove the top-left white home button, top-right white title pill and bottom-left white speaker button completely, restoring underlying scenery. Absolutely NO text, letters, numbers, icons, buttons or replacement UI. This is a clean background for code-rendered controls, not a redesign. Keep original 3:2 composition.",
+      "references": [
+        "design/alma-neighborhood/games/02-avi-garden.png"
+      ]
+    },
+    {
+      "id": "03-roni-workshop",
+      "path": "public/assets/neighborhood/03-roni-workshop.webp",
+      "prompt": "Use case: precise-object-edit. Asset type: production game background, landscape 1536x1024. Input 1 is the EDIT TARGET, approved exact game artwork. Preserve the original framing, camera, positions, characters, faces, colors, buildings and lighting with maximum fidelity. Make only these changes for a live interactive interface: Remove the entire white soup speech bubble above the sign, reconstruct scenery. Erase only the large letter from the sign. REMOVE BOTH entire loose vowel tiles, reconstruct yellow workbench. Keep blank sign panel and recess. Also remove the top-left white home button, top-right white title pill and bottom-left white speaker button completely, restoring underlying scenery. Absolutely NO text, letters, numbers, icons, buttons or replacement UI. This is a clean background for code-rendered controls, not a redesign. Keep original 3:2 composition.",
+      "references": [
+        "design/alma-neighborhood/games/03-roni-workshop.png"
+      ]
+    },
+    {
+      "id": "04-sami-deliveries",
+      "path": "public/assets/neighborhood/04-sami-deliveries.webp",
+      "prompt": "Use case: precise-object-edit. Asset type: production game background, landscape 1536x1024. Input 1 is the EDIT TARGET, approved exact game artwork. Preserve the original framing, camera, positions, characters, faces, colors, buildings and lighting with maximum fidelity. Make only these changes for a live interactive interface: Erase all lettering from both dock name signs and from large hanging parcel label. Remove the TWO visiting children behind the signs, reconstruct greenery, so different recipients can be rendered in HTML. Keep captain and Alma exactly. Keep boat and gift. Also remove the top-left white home button, top-right white title pill and bottom-left white speaker button completely, restoring underlying scenery. Absolutely NO text, letters, numbers, icons, buttons or replacement UI. This is a clean background for code-rendered controls, not a redesign. Keep original 3:2 composition.",
+      "references": [
+        "design/alma-neighborhood/games/04-sami-deliveries.png"
+      ]
+    },
+    {
+      "id": "06-yael-stories",
+      "path": "public/assets/neighborhood/06-yael-stories.webp",
+      "prompt": "Use case: precise-object-edit. Asset type: production game background, landscape 1536x1024. Input 1 is the EDIT TARGET, approved exact game artwork. Preserve the original framing, camera, positions, characters, faces, colors, buildings and lighting with maximum fidelity. Make only these changes for a live interactive interface: Erase ALL Hebrew writing from the open book leaving realistic blank cream paper, keep book shape. REMOVE BOTH entire circular animal answer tiles and reconstruct wood table beneath. Keep librarian and Alma exactly. Also remove the top-left white home button, top-right white title pill and bottom-left white speaker button completely, restoring underlying scenery. Absolutely NO text, letters, numbers, icons, buttons or replacement UI. This is a clean background for code-rendered controls, not a redesign. Keep original 3:2 composition.",
+      "references": [
+        "design/alma-neighborhood/games/06-yael-stories.png"
+      ]
+    },
+    {
+      "id": "neighborhood",
+      "path": "public/assets/neighborhood/neighborhood.webp",
+      "prompt": "Use case: stylized-concept. Asset type: production full-screen isometric neighborhood map for Alma's Hebrew learning game. Reference 1 is the APPROVED architecture, canal, coral bridge, angular foliage, vibrant 3D style. References 2–7 are exact character identity guides, preserve each. Create a zoomed-out cohesive continuous neighborhood map, 1536x1024 landscape, no floating island. Six distinct destinations arranged on a 3-column by 2-row layout connected by broad inviting paths and the turquoise canal. Centers: top left (22%,30%) Noa chef outside yellow cafe with striped coral awning; top middle (50%,27%) Avi gardener with straw hat beside vegetable beds and yellow greenhouse; top right (80%,30%) Roni dark-skinned female builder with yellow hardhat beside bridge workshop; bottom left (22%,72%) Sami captain orange vest by boat dock; bottom middle (51%,72%) Lia auburn woman director purple beret outside teal puppet theater; bottom right (80%,72%) Yael gray bun blue glasses yellow cardigan outside library. Each of the SIX adult characters visible full body near own destination, large enough to recognize; exactly one of each, no other people. Reserve center path (50%,50%) unobstructed for Alma avatar. Canal winds between zones with coral bridges. Fill canvas edge to edge, same bright high-quality faceted 3D art, warm sunshine, lush flowers. NO text, labels, bubbles, UI, buttons, icons or letters. Readable separated destinations, mobile game level map, no clutter.",
+      "references": [
+        "design/alma-neighborhood/games/01-noa-kitchen.png",
+        "design/alma-neighborhood/games/02-avi-garden.png",
+        "design/alma-neighborhood/games/03-roni-workshop.png",
+        "design/alma-neighborhood/games/05-lia-theater.png",
+        "design/alma-neighborhood/games/06-yael-stories.png"
+      ],
+      "note": "The five approved character scene references above were supplied on the successful generation retry."
+    },
+    {
+      "id": "welcome",
+      "path": "public/assets/neighborhood/welcome.webp",
+      "prompt": "Use case: identity-preserve. Asset type: full screen welcome background for approved children's game. Both images are references: preserve EXACT Alma girl identity, brown wavy ponytail yellow flower tie, large brown eyes, white yellow-daisy shirt, blue cuffed jeans, white sneakers, pink backpack, friendly rounded face. Landscape 1536x1024. Alma stands prominently on RIGHT half (center x75%, head y30%, feet y90%), smiling and waving directly toward viewer, whole body. LEFT half contains calm soft turquoise canal and cream paved plaza with abundant clear visual negative space for game title and start button to be overlaid later. Same approved bright faceted 3D angular neighborhood, coral bridge in background, yellow cafe, flowers, warm sunshine, joyful adventurous modern video game art. Continuous world fills edges. No adult, no other children. NO text, letters, UI, buttons or symbols. No floating island, no border, no watermark.",
+      "references": [
+        "design/alma-neighborhood/games/01-noa-kitchen.png",
+        "design/alma-neighborhood/06-geometric-adventure.png"
+      ]
+    }
+  ],
+  "extraAssets": [
+    {
+      "path": "public/assets/neighborhood/objects.webp",
+      "prompt": "Use case: stylized-concept. Asset type: transparent game OBJECT SPRITE ATLAS for the attached approved isometric children's game. Match its bright faceted stylized 3D, warm polished forms, clear recognizable object silhouettes. Output square 3072x3072 transparent background, EXACTLY a strict uniform 6-column by 6-row grid of 36 isolated objects, one centered object per invisible equal square cell. Each fits within central 76% of its cell, padding, no overlap, no shadows outside object, no borders, no labels, no text. Order LEFT TO RIGHT then TOP TO BOTTOM: row 1: bowl of vegetable soup; red apple with leaf; yellow banana; orange carrot; white rabbit; gray cat. Row 2: red gift box yellow ribbon; purple balloon; yellow crescent moon; leafy green tree; red roof house; mallard duck. Row 3: golden key; blue notebook; blue pencil case with pencils; white and blue eraser; handheld pink mirror; single brown date fruit with palm leaflet. Row 4: braided golden challah bread; glass of milk; turquoise ocean wave; green mountain; yellow lightning bolt; pink flower. Row 5: friendly green crocodile; proud rooster; little blue train; traffic light; cute lion; gray elephant. Row 6: red heart; gold star; fluffy cloud; small rain cloud with raindrops; small rainbow; friendly brown mouse. All 36 distinct objects, consistent size, neutral front/three quarter view, no Hebrew or any writing, no human faces. Transparent canvas between objects. This will be used as CSS sprites sliced by exact 1/6 grid, so exact equal rows and columns and centering are critical."
+    },
+    {
+      "path": "public/assets/neighborhood/05-lia-theater.webp",
+      "prompt": "Use case: precise-object-edit. This image is the exact approved game background EDIT TARGET. Preserve every pixel of composition, lighting, characters Alma right and Lia director left, buildings, plants, teal theater roof and yellow curtains. Remove ONLY the two little puppets and BOTH chairs from inside the theater, reconstruct continuous red curtain and wooden stage behind them. Erase the Hebrew text from the clapperboard and make its cream inset a smooth blank panel. Remove both loose cream answer tiles from foreground floor and reconstruct floor. Remove top-left home icon, top-right white title pill, bottom-left audio icon and restore scenery. Absolutely no other changes. No text, no UI. The empty stage will receive animated puppet sprites in code. Landscape1536x1024."
+    },
+    {
+      "path": "public/assets/neighborhood/puppets.webp",
+      "prompt": "Use case: background-extraction / stylized-concept. Create a transparent production sprite atlas for the TWO PUPPETS on the stage of the reference. Preserve these exact characters: left is ginger yarn-haired GIRL puppet, yellow hair bows, purple dress with white flower, yellow sleeves, purple shoes. Right is blond yarn-haired BOY puppet, blue and cream striped shirt, tan shorts, blue shoes. Felt texture, friendly round faces, match approved reference. Output transparent square 1536x1536 with exact 2 columns by 4 rows, equal rectangular cells, one centered full-body puppet per cell. LEFT column GIRL, RIGHT column BOY. Row1: both standing upright smiling. Row2: both sitting on their little yellow chairs, as in reference. Row3: both dancing one arm up, one knee bent. Row4: both singing joyfully mouths open, arms open. All front-facing, same body proportions and scale, fully visible head to shoes, generous 12% padding each cell, no overlap. No background, no text, no panels, no props except chairs row2, no other people, no labels. Actual alpha transparency. This is a sprite sheet sliced in exact equal 2x4 grid."
+    }
+  ],
+  "encoding": "Generated PNGs were encoded as WebP; the background framing and character designs are preserved. Portrait layouts reposition the scene without changing the source artwork."
+}
