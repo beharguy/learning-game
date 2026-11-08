@@ -2,7 +2,13 @@
 // reading exercise: the child's text keeps its original spelling and niqqud.
 const replacements=[
   ['כָּל','כּוֹל'], ['כָל','כוֹל'],
-  ['נִקּוּד','נִיקוּד'], ['נִּקּוּד','נִיקוּד']
+  ['נִקּוּד','נִיקוּד'], ['נִּקּוּד','נִיקוּד'],
+  // The family's name is al-MA. Two familiar speech tokens cue final stress;
+  // the reading/UI text must remain the single name עַלְמָה.
+  ['עַלְמָה','עַל מָה'],
+  // Hila misreads the fully pointed button noun. Its ordinary spelling lets
+  // the voice's Hebrew lexicon resolve kaftor in the surrounding sentence.
+  ['הַכַּפְתּוֹר','הכפתור'], ['כַּפְתּוֹר','כפתור']
 ].map(([from,to])=>[from.normalize('NFC'),to.normalize('NFC')]);
 export function pronunciationText(text){
   let result=text.normalize('NFC');
