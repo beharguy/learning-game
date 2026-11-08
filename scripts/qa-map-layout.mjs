@@ -61,9 +61,16 @@ try{
   page.on('pageerror',e=>errors.push(e.message));
   page.on('response',r=>{if(r.status()>=400&&!r.url().endsWith('/sw.js'))failures.push(r.status()+' '+r.url());});
   await page.goto(base+'/');await page.locator('[data-action="enter"]').tap();await page.waitForURL('**/#map');
-  const layout=await inspectMap(page,width,height,label);
+  await inspectMap(page,width,height,label);
+  await page.evaluate(async()=>{
+   await document.fonts.ready;
+   const sprite=new Image();sprite.src=new URL('assets/neighborhood/objects.webp',document.baseURI).href;await sprite.decode();
+  });
   await page.screenshot({path:output+'/'+label+'-map-fixed.png'});
   for(const game of GAMES){
+   // A hash changes before its hashchange handler paints the new screen.
+   // Wait for the map, not just its URL, before tapping canvas coordinates.
+   const layout=await inspectMap(page,width,height,label+' before '+game.id);
    const point=layout.points[game.id];
    await page.touchscreen.tap(point.x,point.y);
    await page.waitForURL('**/#play/'+game.id);await page.locator('.answers').waitFor();
