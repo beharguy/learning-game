@@ -6,6 +6,16 @@ await rm(dist,{recursive:true,force:true});await mkdir(dist,{recursive:true});
 await cp('index.html',path.join(dist,'index.html'));
 await cp('src',path.join(dist,'src'),{recursive:true});
 await cp('public',dist,{recursive:true});
+// An open page can outlive its service worker and still request a previous
+// text hash. Keep those URLs playable, using the current corrected recording.
+// Materialize static aliases as well as caching them: GitHub Pages has no
+// server-side redirect rules, and old clients may not have updated their SW.
+const audioIds=new Set(JSON.parse(await readFile('public/audio-index.json','utf8')));
+const audioAliases=JSON.parse(await readFile('public/audio-aliases.json','utf8'));
+for(const [previous,current] of Object.entries(audioAliases)){
+  if(!/^[a-f0-9]{1,8}$/.test(previous)||!audioIds.has(current)||audioIds.has(previous))throw new Error(`Invalid audio alias: ${previous} -> ${current}. Update its target when narration changes.`);
+  await cp(path.join(dist,'audio',current+'.mp3'),path.join(dist,'audio',previous+'.mp3'));
+}
 async function walk(dir){const entries=await readdir(dir,{withFileTypes:true});const files=[];for(const e of entries){const p=path.join(dir,e.name);if(e.isDirectory())files.push(...await walk(p));else files.push(p);}return files;}
 const files=(await walk(dist)).sort();
 const hash=createHash('sha256');hash.update(await readFile(new URL(import.meta.url)));for(const file of files)hash.update(await readFile(file));

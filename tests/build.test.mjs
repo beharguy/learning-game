@@ -2,6 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import vm from 'node:vm';
+import {SAY} from '../src/neighborhood/content.js';
+import {audioKey} from '../src/narration.js';
+test('retired narration URLs serve current speech and remain available offline',async()=>{
+  const aliases=JSON.parse(await readFile('public/audio-aliases.json','utf8'));
+  const canonical=new Set(JSON.parse(await readFile('public/audio-index.json','utf8')));
+  const sw=await readFile('dist/sw.js','utf8');
+  const assets=new Set(JSON.parse(sw.match(/const ASSETS=(\[[^;]+\]);/)[1]));
+  assert.equal(aliases['2ef609b5'],audioKey(SAY.kitchen));
+  assert.equal(aliases['87cc93d2'],audioKey(SAY.map));
+  assert.equal(aliases['1bcdb8a'],audioKey(SAY.welcome));
+  for(const [previous,current] of Object.entries(aliases)){
+    assert.ok(canonical.has(current));assert.ok(!canonical.has(previous));
+    assert.ok(assets.has(`./audio/${previous}.mp3`));
+    assert.deepEqual(await readFile(`dist/audio/${previous}.mp3`),await readFile(`public/audio/${current}.mp3`));
+  }
+});
 test('the deploy includes every offline asset, install icon and script',async()=>{
   const sw=await readFile('dist/sw.js','utf8');
   const assets=JSON.parse(sw.match(/const ASSETS=(\[[^;]+\]);/)[1]);
