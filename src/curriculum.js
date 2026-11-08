@@ -15,7 +15,7 @@ function sounds(page, rows, position = 'start') {
       hint: position === 'start' ? `נַקְשִׁיב לַהַתְחָלָה: ${label}` : `נַקְשִׁיב לַסּוֹף: ${label}` }));
 }
 function shape(page, mark, others) {
-  return question(page, 'מִצְאִי אֶת הָאוֹת הַזֹּאת.', mark, [mark, ...others], { kind:'warmup', model: mark, hint: 'בִּדְקִי אֶת הַצּוּרָה וְאֶת הַסִּימָן מִתַּחַת לָאוֹת.' });
+  return question(page, 'אֵיפֹה הָאוֹת הַזֹּאת?', mark, [mark, ...others], { kind:'warmup', model: mark, hint: 'נִבְדֹּק אֶת הַצּוּרָה וְאֶת הַסִּימָן מִתַּחַת לָאוֹת.' });
 }
 function cloze(page, sentence, target, others, emoji = '✦') {
   return question(page, 'מָה מַתְאִים בַּמָּקוֹם הָרֵיק?', target, [target, ...others], { sentence, emoji, hint: 'נִקְרָא אֶת הַמִּשְׁפָּט שׁוּב.' });

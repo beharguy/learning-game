@@ -8,24 +8,26 @@ export const GAMES = [
   {id:'theater',name:'הַבָּמָה שֶׁל לִיָה',person:'ליה הבמאית',symbol:'🎭',asset:'05-lia-theater',start:35,x:39,y:81,reward:'אֵיזוֹ הַצָּגָה!',verb:'הצגות'},
   {id:'library',name:'הַסִּפְרִיָּה שֶׁל יָעֵל',person:'יעל הספרנית',symbol:'📖',asset:'06-yael-stories',start:25,x:79,y:80,reward:'פָּתַרְנוּ אֶת הַתַּעֲלוּמָה!',verb:'סיפורים'}
 ];
+// Player instructions use impersonal questions, infinitives or first-person plural.
+// Gendered verbs belong only to authored characters and the grammar exercises.
 export const SAY = {
-  welcome:'בְּרוּכָה הַבָּאָה לַשְּׁכוּנָה שֶׁל עַלְמָה! לַחֲצִי עַל הַכַּפְתּוֹר הַיָּרֹק וּבוֹאִי לְשַׂחֵק.',
-  map:'כָּל הַחֲבֵרִים מְחַכִּים לָךְ! בַּחֲרִי דְּמוּת וְלַחֲצִי עָלֶיהָ כְּדֵי לְשַׂחֵק.',
-  kitchen:'בּוֹאִי נַשְׁלִים אֶת הַמִּלָּה. לַחֲצִי עַל הַחֵלֶק הַחָסֵר.',
-  garden:'נִשְׁתֹּל יַחַד! הַקְשִׁיבִי וּבַחֲרִי אֶת הַתְּמוּנָה הַמַּתְאִימָה.',
-  workshop:'בּוֹאִי נִבְנֶה צְלִילִים! הַקְשִׁיבִי וּבַחֲרִי אֶת הַכַּרְטִיס הַמַּתְאִים.',
-  boat:'יֵשׁ לָנוּ מִשְׁלוֹחַ! קִרְאִי אֶת הַתָּוִית וּבַחֲרִי אֶת הָרָצִיף הַמַּתְאִים.',
-  theater:'בּוֹאִי נַפְעִיל אֶת הַבּוּבוֹת! בַּחֲרִי אֶת הַמִּלָּה שֶׁמַּשְׁלִימָה אֶת הַמִּשְׁפָּט.',
-  library:'בּוֹאִי נִפְתֹּר תַּעֲלוּמָה! קִרְאִי אֶת הָרֶמֶז וּבַחֲרִי תְּשׁוּבָה. אֶפְשָׁר לְבַקֵּשׁ עֶזְרָה בָּרַמְקוֹל.',
+  welcome:'זֹאת הַשְּׁכוּנָה שֶׁל עַלְמָה! כְּדֵי לְהַתְחִיל לְשַׂחֵק, אֶפְשָׁר לִלְחֹץ עַל הַכַּפְתּוֹר הַיָּרֹק.',
+  map:'הַחֲבֵרִים מְחַכִּים בַּשְּׁכוּנָה! לְחִיצָה עַל דְּמוּת פּוֹתַחַת מִשְׂחָק.',
+  kitchen:'נַשְׁלִים אֶת הַמִּלָּה. אֵיזֶה חֵלֶק חָסֵר? אֶפְשָׁר לִלְחֹץ עָלָיו.',
+  garden:'נִשְׁתֹּל יַחַד! נַקְשִׁיב וְנִבְחַר אֶת הַתְּמוּנָה הַמַּתְאִימָה.',
+  workshop:'נִבְנֶה צְלִילִים! נַקְשִׁיב וְנִבְחַר אֶת הַכַּרְטִיס הַמַּתְאִים.',
+  boat:'יֵשׁ לָנוּ מִשְׁלוֹחַ! נִקְרָא אֶת הַתָּוִית וְנִבְחַר אֶת הָרָצִיף הַמַּתְאִים.',
+  theater:'נַפְעִיל אֶת הַבּוּבוֹת! אֵיזוֹ מִלָּה מַשְׁלִימָה אֶת הַמִּשְׁפָּט?',
+  library:'נִפְתֹּר תַּעֲלוּמָה! נִקְרָא אֶת הָרֶמֶז וְנִבְחַר תְּשׁוּבָה. אֶפְשָׁר לִלְחֹץ עַל הָרַמְקוֹל לְעֶזְרָה.',
   correct:'כָּל הַכָּבוֹד! תְּשׁוּבָה נְכוֹנָה!',retry:'לֹא נוֹרָא. נַקְשִׁיב, נַחְשֹׁב וּנְנַסֶּה שׁוּב.',
-  hint:'נַקְשִׁיב יַחַד. הִסְתַּכְּלִי עַל הַכַּרְטִיסִים.',
+  hint:'נַקְשִׁיב יַחַד וְנִסְתַּכֵּל עַל הַכַּרְטִיסִים.',
   finish:'כָּל הַכָּבוֹד! אֶפְשָׁר לְשַׂחֵק עוֹד, לְבַקֵּר חָבֵר אַחֵר, אוֹ לָנוּחַ.',
-  next:'מוּכָנָה לְעוֹד מִשְׂחָק? לַחֲצִי עַל הַחֵץ הַיָּרֹק.',
+  next:'עוֹד מִשְׂחָק? אֶפְשָׁר לִלְחֹץ עַל הַחֵץ הַיָּרֹק.',
   locked:'נִפְגֹּשׁ אֶת הַחָבֵר הַזֶּה בְּהֶמְשֵׁךְ הַחוֹבֶרֶת. בֵּינְתַיִם אֶפְשָׁר לְשַׂחֵק עִם הַחֲבֵרִים הָאֲחֵרִים.',
-  listenWord:'הַקְשִׁיבִי לַמִּלָּה.', rhyme:'אֵיזוֹ מִלָּה מִתְחָרֶזֶת?',
-  startSound:'אֵיזוֹ תְּמוּנָה מַתְחִילָה בְּאוֹתוֹ צְלִיל?',endSound:'אֵיזוֹ מִלָּה מִסְתַּיֶּמֶת בְּאוֹתוֹ צְלִיל?',
-  stamp:'בַּחֲרִי אֶת סִימָן הַנִּקּוּד.', choosePicture:'בַּחֲרִי אֶת הַתְּמוּנָה הַמַּתְאִימָה.',
-  chooseWord:'בַּחֲרִי אֶת הַמִּלָּה הַמַּתְאִימָה.', helpRead:'נִקְרָא יַחַד.',
+  listenWord:'נַקְשִׁיב לַמִּלָּה.', rhyme:'אֵיזוֹ מִלָּה מִתְחָרֶזֶת?',
+  startSound:'אֵיזוֹ מִלָּה מַתְחִילָה בְּאוֹתוֹ צְלִיל?',endSound:'אֵיזוֹ מִלָּה מִסְתַּיֶּמֶת בְּאוֹתוֹ צְלִיל?',
+  stamp:'אֵיזֶה סִימָן נִקּוּד מַתְאִים?', choosePicture:'אֵיזוֹ תְּמוּנָה מַתְאִימָה?',
+  chooseWord:'אֵיזוֹ מִלָּה מַתְאִימָה?', helpRead:'נִקְרָא יַחַד.',
 };
 const allQ=lessons.flatMap(l=>l.questions.map(q=>({...q,lesson:l.id})));
 const soundForm=text=>text.normalize('NFD').replace(/[\u05b2\u05b7\u05b8]/g,'a');
@@ -111,9 +113,9 @@ for(const [page,a,pa,b,pb]of rhymes)for(const [cue,picture,target,pic]of [[a,pa,
 // Reuse all established, page-checked vowel exercises, adding manipulable stamps.
 for(const q of allQ.filter(q=>q.mode==='vowels'))add('workshop',{type:'vowel',page:q.page,prompt:q.speech||q.prompt,display:q.formula?.join(' + ')||q.label||'',target:q.target,options:q.answers.map(t=>option(t)),read:q.audio,automatic:q.hideLabel?[q.audio]:[],hint:q.hint,explanation:q.explanation,picture:q.emoji});
 const letters=[['תּ',8],['מ',12],['ר',16],['בּ',20],['ק',22],['א',28],['י',30],['ל',32],['שׁ',44],['ח',48],['נ',56],['דּ',58],['ב',60]];
-const markRows=[['ָ','קָמַץ',8],['ַ','פַּתָּח',8],['ְ','שְׁוָא',64]];
+const markRows=[['ָ','קָמָץ',8],['ַ','פַּתָּח',8],['ְ','שְׁוָא',64]];
 for(const [base,p]of letters)for(const [mark,name,mp]of markRows){
- add('workshop',{type:'stamp',page:Math.max(p,mp),base,mark,target:'◌'+mark,completion:base+mark,prompt:`חַבְּרִי אֶת הָאוֹת עִם ${name}.`,options:markRows.filter(r=>r[2]<=Math.max(p,mp)).map(r=>option('◌'+r[0])),display:base});
+ add('workshop',{type:'stamp',page:Math.max(p,mp),base,mark,target:'◌'+mark,completion:base+mark,prompt:`נְחַבֵּר אֶת הָאוֹת עִם ${name}.`,options:markRows.filter(r=>r[2]<=Math.max(p,mp)).map(r=>option('◌'+r[0])),display:base});
 }
 for(const [base,end,page]of [['מ','ם',14],['נ','ן',56]])for(const [text,picture]of (base==='מ'?endings[1][2]:endings[6][2])){
  add('workshop',{type:'final',page,prompt:'אֵיזוֹ אוֹת כּוֹתְבִים בְּסוֹף הַמִּלָּה?',display:base,picture,cue:text,automatic:[text],target:end,options:[option(base),option(end)]});
@@ -153,7 +155,7 @@ for(const person of people)for(const [m,f,page,animation,picture]of verbs){
 }
 for(const q of allQ.filter(q=>q.sentence&&!q.story&&q.page>=35))add('theater',{type:'sentence',page:q.page,prompt:q.speech||q.prompt,sentence:q.sentence,target:q.target,options:q.answers.map(t=>option(t)),picture:q.emoji,read:q.sentence.replace(/____/g,'…'),completed:q.sentence.replace(/____/g,q.target),animation:'bow'});
 for(const a of people)for(const b of people.filter(p=>p!==a)){
- add('theater',{type:'connection',page:73,prompt:'מִי עוֹד? בַּחֲרִי אֶת מִלַּת הַחִבּוּר.',sentence:a.name+' ____',target:b.and,options:[option(b.and),option(b.to)],actor:'both',animation:'bow',picture:'🤝',read:a.name,completed:a.name+' '+b.and+'.'});
+ add('theater',{type:'connection',page:73,prompt:'מִי עוֹד? אֵיזוֹ מִלַּת חִבּוּר מַתְאִימָה?',sentence:a.name+' ____',target:b.and,options:[option(b.and),option(b.to)],actor:'both',animation:'bow',picture:'🤝',read:a.name,completed:a.name+' '+b.and+'.'});
 }
 
 for(const q of allQ.filter(q=>q.story||q.lesson==='yes-no'||(q.page===39&&q.pictureAnswers)))add('library',{type:q.story?'story':'yes-no',page:q.page,prompt:q.prompt,story:q.story||'',picture:q.emoji,target:q.target,options:q.answers.map((t,i)=>option(t,q.pictureAnswers?.[i])),read:[q.story,q.prompt].filter(Boolean).join(' ')});
