@@ -12,6 +12,9 @@ const replacements=[
   // Let the Hebrew lexicon resolve dmut without over-articulating the pointed
   // opening of the map instruction. Keep its displayed niqqud unchanged.
   ['דְּמוּת','דמות'],
+  // Use Hila's lexical pronunciation of ta-MAR, also with the book's
+  // recipient/conjunction prefixes. Keep both kamatz signs in reading text.
+  ['לְתָמָר','לתמר'], ['וְתָמָר','ותמר'], ['תָּמָר','תמר'],
   // Input used for the success recording. Unpointed spelling alone did not
   // fix its duration; scripts/audio-edits preserves the approved timing edit.
   ['תְּשׁוּבָה נְכוֹנָה','תשובה נכונה']

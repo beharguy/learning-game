@@ -136,7 +136,9 @@ async function playSuccess(force=false){
  if(!stillHere())return;
  // VoicePlayer resolves after the entire queue, or when playback is unavailable.
  // A repeat, navigation or backgrounding invalidates this run before stopping it.
- await speak([SAY.correct,q.word||q.completed||q.explanation,current.game.reward],force);
+ // In the kitchen, hearing the completed word is the reward; avoid repeating
+ // "meal ready" after every answer before the next word can start.
+ await speak([SAY.correct,q.word||q.completed||q.explanation,...(current.game.id==='kitchen'?[]:[current.game.reward])],force);
  if(!stillHere())return;
  // Keep the celebration visible in silent/error mode, then leave a small breath
  // between the completed feedback and the next question's narration.

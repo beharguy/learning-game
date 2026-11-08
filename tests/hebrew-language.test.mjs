@@ -37,7 +37,8 @@ test('grammar exercises retain the correct verb for each named character',()=>{
       const [source,verb]=q.sentence.split(' ');
       assert.equal(verb,pair[genders[source]==='f'?1:0]+'.',q.sentence);
     }
-    assert.equal(pronunciationText(q.completed),q.completed.normalize('NFC'));
+    const spokenSubject=subject==='תָּמָר'?'תמר':subject;
+    assert.equal(pronunciationText(q.completed),`${spokenSubject} ${q.target}.`.normalize('NFC'));
   }
   assert.ok(counts.f>0&&counts.m>0);
   for(const q of BANK.library.filter(q=>q.type==='what')){
@@ -52,7 +53,8 @@ test('vowel names use the standard vocalization without altering teaching words'
   for(const text of catalog())assert.ok(!text.normalize('NFC').includes('קָמַץ'.normalize('NFC')),text);
   const names=new Set(lessons.flatMap(l=>l.questions.map(q=>q.markName).filter(Boolean)));
   for(const name of ['קָמָץ','פַּתָּח','שְׁוָא','חֲטַף פַּתָּח'])assert.ok(names.has(name),name);
-  for(const lesson of lessons)for(const word of lesson.words)assert.equal(pronunciationText(word.text),word.text.normalize('NFC'));
+  const spokenWords=new Map([['תָּמָר','תמר'],['לְתָמָר','לתמר'],['וְתָמָר','ותמר']]);
+  for(const lesson of lessons)for(const word of lesson.words)assert.equal(pronunciationText(word.text),(spokenWords.get(word.text)||word.text).normalize('NFC'));
 });
 
 test('published audio catalog matches current wording and excludes obsolete clips',async()=>{

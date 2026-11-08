@@ -21,13 +21,21 @@ test('Alma, kaftor and dmut hints affect speech only and are idempotent',()=>{
   for(const word of ['עַלְמָהּ','כַּפְתּוֹרִים','הַכַּפְתּוֹרִים','דְּמוּתוֹ','דְּמוּתָהּ'])assert.equal(pronunciationText(word),word.normalize('NFC'));
 });
 test('pronunciation hints preserve learning words, character genders and repeated processing',()=>{
-  for(const lesson of lessons)for(const word of lesson.words)assert.equal(pronunciationText(word.text),word.text.normalize('NFC'));
+  const spokenWords=new Map([['תָּמָר','תמר'],['לְתָמָר','לתמר'],['וְתָמָר','ותמר']]);
+  for(const lesson of lessons)for(const word of lesson.words)assert.equal(pronunciationText(word.text),(spokenWords.get(word.text)||word.text).normalize('NFC'));
   for(const text of narrationTexts(lessons))assert.ok(!text.includes('מָצָאת'),text);
   assert.equal(GUIDE.correct,'כָּל הַכָּבוֹד! תְּשׁוּבָה נְכוֹנָה!');
   const story='בָּרָק רָקַד. תָּמָר שָׁרָה.';
-  assert.equal(pronunciationText(story),story.normalize('NFC'));
+  assert.equal(pronunciationText(story),'בָּרָק רָקַד. תמר שָׁרָה.'.normalize('NFC'));
   for(const text of narrationTexts(lessons))assert.equal(pronunciationText(pronunciationText(text)),pronunciationText(text));
   for(const lines of Object.values(DEMOS))assert.ok(!lines.some(t=>/עוברים|לוחצים|בוחרים/.test(t.replace(/[\u0591-\u05c7]/g,''))));
+});
+test('Tamar speech hints cover the name, fruit and prefixes without changing longer forms',()=>{
+ const text='תָּמָר. לְתָמָר. וְתָמָר. תָּמָר שָׁרָה. זֶה תָּמָר?';
+ assert.equal(pronunciationText(text),'תמר. לתמר. ותמר. תמר שָׁרָה. זֶה תמר?'.normalize('NFC'));
+ for(const word of ['תְּמָרִים','תָּמָרָה','לְתָמָרָה','וְתָמָרָה'])assert.equal(pronunciationText(word),word.normalize('NFC'));
+ const words=lessons.flatMap(l=>l.words.map(w=>w.text));
+ for(const word of ['תָּמָר','לְתָמָר','וְתָמָר'])assert.ok(words.includes(word),'The displayed workbook spelling stays pointed: '+word);
 });
 test('a pronunciation fix changes its generation cache key without changing the displayed text key',()=>{
   const text='כָּל הַכָּבוֹד!';

@@ -43,7 +43,7 @@ const events=page=>page.evaluate(()=>window.qaEvents);
 function verifyQueue(log,q,game){
  const solvedAt=log.find(e=>e.type==='save'&&e.state.active===null&&e.state.stats[game.id]?.correct===1).time;
  const completed=log.filter(e=>e.type==='ended'&&e.solved&&e.time>=solvedAt);
- const expected=[SAY.correct,q.word||q.completed||q.explanation,game.reward].filter(Boolean).map(t=>audioKey(t)+'.mp3');
+ const expected=[SAY.correct,q.word||q.completed||q.explanation,...(game.id==='kitchen'?[]:[game.reward])].filter(Boolean).map(t=>audioKey(t)+'.mp3');
  assert.deepEqual(completed.map(e=>e.src.split('/').at(-1)),expected,game.id+' must complete every feedback clip');
  const advanced=log.find(e=>e.type==='save'&&e.state.active?.round===1);
  assert.ok(advanced.time-completed.at(-1).time>=300,game.id+' must leave a breath after feedback');
