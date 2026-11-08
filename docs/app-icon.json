@@ -1,0 +1,13 @@
+{
+  "generator": "Built-in imagegen",
+  "date": "2026-11-08",
+  "reference": "public/assets/neighborhood/welcome.webp",
+  "prompt": "Use case: identity-preserve.\nAsset type: production Android tablet home-screen app icon for the Hebrew children's game \"השכונה של עלמה\".\nInput image 1 is the exact character identity and art-style reference from the game's welcome screen. Adapt this artwork into a SINGLE square 1024x1024 app icon, not a mockup or presentation.\nSubject: the SAME Alma girl: warm brown eyes, smiling friendly round face, faint freckles, rich brown wavy side ponytail with a yellow flower hair tie, white shirt with yellow daisies, pink backpack straps. Preserve this child's facial identity closely.\nComposition: cheerful close-up head and shoulders, Alma centered, looking at the viewer. Her face is the clear dominant recognizable silhouette. Keep the entire face, yellow hair flower, and key hair shape safely inside the central circle whose diameter is 80% of the canvas. Head top at about 20% height, face centered around x50% y44%; shoulders extend toward the bottom edge. Relaxed smile with friendly open eyes. No raised hand. Enough breathing room for circle and squircle launcher crops.\nBackdrop: simple turquoise luminous background, with just a soft low-detail coral arched bridge and a hint of sunlit yellow neighborhood architecture behind her, echoing the reference. Calm broad color blocks so the face is readable at 48 pixels; no busy plants, tiny props, or decorative particles.\nStyle: polished modern joyful stylized 3D game artwork, same material, warmth and character rendering as reference; vivid turquoise, golden yellow, coral pink and warm brown.\nTechnical constraints: square FULL BLEED OPAQUE background to all four edges, NO rounded corners, NO outer border, NO white padding, NO transparency, NO frame, NO app-grid mockup. Do not draw any words, Hebrew, letters, numbers, logos, badge or interface controls. One finished icon only.",
+  "assets": [
+    "public/assets/alma-icon-48.png",
+    "public/assets/alma-icon-180.png",
+    "public/assets/alma-icon-192.png",
+    "public/assets/alma-icon-512.png"
+  ],
+  "encoding": "Generated square opaque artwork resized with macOS sips for browser favicon, Apple touch icon and Android launcher. Legacy icon URLs also serve the new artwork. Manifest URL and app id remain unchanged."
+}
