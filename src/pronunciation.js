@@ -8,7 +8,10 @@ const replacements=[
   ['עַלְמָה','עַל מָה'],
   // Hila misreads the fully pointed button noun. Its ordinary spelling lets
   // the voice's Hebrew lexicon resolve kaftor in the surrounding sentence.
-  ['הַכַּפְתּוֹר','הכפתור'], ['כַּפְתּוֹר','כפתור']
+  ['הַכַּפְתּוֹר','הכפתור'], ['כַּפְתּוֹר','כפתור'],
+  // Let the Hebrew lexicon resolve dmut without over-articulating the pointed
+  // opening of the map instruction. Keep its displayed niqqud unchanged.
+  ['דְּמוּת','דמות']
 ].map(([from,to])=>[from.normalize('NFC'),to.normalize('NFC')]);
 export function pronunciationText(text){
   let result=text.normalize('NFC');

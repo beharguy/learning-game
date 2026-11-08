@@ -9,15 +9,16 @@ test('speech-only hints distinguish kol and nikud',()=>{
   assert.equal(pronunciationText('נִקּוּד. הַנִּקּוּד.'),'נִיקוּד. הַנִיקוּד.'.normalize('NFC'));
   assert.equal(pronunciationText('כָּלָה'),'כָּלָה'.normalize('NFC'));
 });
-test('Alma final stress and kaftor hints affect speech only and are idempotent',()=>{
-  const text='הַשְּׁכוּנָה שֶׁל עַלְמָה. הַכַּפְתּוֹר הַיָּרֹק. כַּפְתּוֹר.';
+test('Alma, kaftor and dmut hints affect speech only and are idempotent',()=>{
+  const text='הַשְּׁכוּנָה שֶׁל עַלְמָה. הַכַּפְתּוֹר הַיָּרֹק. כַּפְתּוֹר. לְחִיצָה עַל דְּמוּת.';
   const spoken=pronunciationText(text);
-  assert.equal(spoken,'הַשְּׁכוּנָה שֶׁל עַל מָה. הכפתור הַיָּרֹק. כפתור.'.normalize('NFC'));
+  assert.equal(spoken,'הַשְּׁכוּנָה שֶׁל עַל מָה. הכפתור הַיָּרֹק. כפתור. לְחִיצָה עַל דמות.'.normalize('NFC'));
   assert.equal(pronunciationText(spoken),spoken);
   assert.notEqual(audioKey(text),audioKey(spoken));
   assert.ok(text.includes('עַלְמָה'));
+  assert.ok(text.includes('דְּמוּת'));
   // A hint must not replace the beginning of a longer word or a suffixed form.
-  for(const word of ['עַלְמָהּ','כַּפְתּוֹרִים','הַכַּפְתּוֹרִים'])assert.equal(pronunciationText(word),word.normalize('NFC'));
+  for(const word of ['עַלְמָהּ','כַּפְתּוֹרִים','הַכַּפְתּוֹרִים','דְּמוּתוֹ','דְּמוּתָהּ'])assert.equal(pronunciationText(word),word.normalize('NFC'));
 });
 test('pronunciation hints preserve learning words, character genders and repeated processing',()=>{
   for(const lesson of lessons)for(const word of lesson.words)assert.equal(pronunciationText(word.text),word.text.normalize('NFC'));
