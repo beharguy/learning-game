@@ -11,7 +11,10 @@ const replacements=[
   ['הַכַּפְתּוֹר','הכפתור'], ['כַּפְתּוֹר','כפתור'],
   // Let the Hebrew lexicon resolve dmut without over-articulating the pointed
   // opening of the map instruction. Keep its displayed niqqud unchanged.
-  ['דְּמוּת','דמות']
+  ['דְּמוּת','דמות'],
+  // Input used for the success recording. Unpointed spelling alone did not
+  // fix its duration; scripts/audio-edits preserves the approved timing edit.
+  ['תְּשׁוּבָה נְכוֹנָה','תשובה נכונה']
 ].map(([from,to])=>[from.normalize('NFC'),to.normalize('NFC')]);
 export function pronunciationText(text){
   let result=text.normalize('NFC');

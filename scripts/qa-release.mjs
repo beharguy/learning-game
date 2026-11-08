@@ -13,6 +13,7 @@ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base=`http://127.0.0.1:${server.address().port}${prefix}`;
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1280,height:800},hasTouch:true,isMobile:true,serviceWorkers:'allow'});
+await context.addInitScript(()=>document.addEventListener('loadedmetadata',e=>{if(e.target instanceof HTMLMediaElement)e.target.playbackRate=4;},true));
 const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 const state=()=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),KEY);
 const parents=async()=>{await page.locator('[data-action="parents"]').click();await page.locator('#gate-answer').fill('12');await page.locator('[data-action="unlock-parents"]').click();};
@@ -27,7 +28,7 @@ try{
    const current=await state(),q=BANK[g.id].find(q=>q.id===current.active.id);
    assert.equal(current.active.round,i);
    await page.getByRole('button',{name:q.target,exact:true}).click();
-   await page.locator('[data-action="next"]').click();
+   await page.waitForFunction(({key,round})=>round===6?!!document.querySelector('.finish-card'):JSON.parse(localStorage.getItem(key)).active?.round===round,{key:KEY,round:i+1});
   }
   await page.locator('.finish-card').waitFor();assert.equal((await state()).stats[g.id].rounds,1);
   await page.locator('[data-action="again"]').click();await page.locator('.answers').waitFor();assert.equal((await state()).active.round,0);

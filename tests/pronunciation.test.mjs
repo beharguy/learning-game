@@ -34,3 +34,11 @@ test('a pronunciation fix changes its generation cache key without changing the 
   assert.notEqual(audioKey(text),audioKey(pronunciationText(text)));
   const unchanged='מָרָק';assert.equal(audioKey(unchanged),audioKey(pronunciationText(unchanged)));
 });
+test('the success recording input changes only speech, not the pointed lesson text',()=>{
+ const text='כָּל הַכָּבוֹד! תְּשׁוּבָה נְכוֹנָה!';
+ const spoken=pronunciationText(text);
+ assert.equal(spoken,'כּוֹל הַכָּבוֹד! תשובה נכונה!'.normalize('NFC'));
+ assert.equal(pronunciationText(spoken),spoken);
+ assert.equal(GUIDE.correct,text);
+ assert.equal(pronunciationText('תְּשׁוּבָה'), 'תְּשׁוּבָה'.normalize('NFC'));
+});

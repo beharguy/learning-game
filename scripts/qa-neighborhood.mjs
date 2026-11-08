@@ -10,6 +10,7 @@ const errors=[],failures=[];const report=[];
 try{
  for(const [label,width,height]of [['landscape',1280,800],['portrait',800,1280],['small-tablet',1024,768],['phone',390,844]]){
   const context=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:true,deviceScaleFactor:1,serviceWorkers:'block'});
+  await context.addInitScript(()=>document.addEventListener('loadedmetadata',e=>{if(e.target instanceof HTMLMediaElement)e.target.playbackRate=4;},true));
   const page=await context.newPage();page.on('pageerror',e=>errors.push(label+': '+e.message));
   page.on('response',r=>{if(r.status()>=400&&!r.url().endsWith('/sw.js'))failures.push(r.status()+' '+r.url());});
   await page.goto(base);await page.locator('.start-button').waitFor();await page.screenshot({path:output+'/'+label+'-welcome.png'});
@@ -26,10 +27,11 @@ try{
    const wrong=page.locator('.answer').filter({hasNotText:q.target});
    const choices=await page.locator('.answer').evaluateAll(els=>els.map(el=>el.getAttribute('aria-label')));
    const wrongIndex=choices.findIndex(s=>s!==q.target);await page.locator('.answer').nth(wrongIndex).click();
-   await page.locator('.answer').nth(choices.indexOf(q.target)).click();await page.locator('.next-button').waitFor();
+   await page.locator('.answer').nth(choices.indexOf(q.target)).click();await page.locator('.game-scene.solved').waitFor();
    const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('alma-neighborhood-v2')));
    assert.equal(after.stats[game.id].correct,1);assert.equal(after.stats[game.id].helped,1);assert.equal(after.stats[game.id].independent,0);
-   await page.locator('[data-action="next"]').click();await page.locator('.answer:not(:disabled)').first().waitFor();
+   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('alma-neighborhood-v2')).active?.round===1);
+   await page.locator('.answer:not(:disabled)').first().waitFor();
    const active=await page.evaluate(()=>JSON.parse(localStorage.getItem('alma-neighborhood-v2')).active);
    await page.reload();await page.locator('.answers').waitFor();
    const restored=await page.evaluate(()=>JSON.parse(localStorage.getItem('alma-neighborhood-v2')).active);assert.equal(restored.id,active.id);assert.equal(restored.round,1);

@@ -79,7 +79,8 @@ async function checkGames(content,engine,{assistance=false}={}){
   }
   if(game.id==='kitchen'){
    await heard([content.SAY.correct,task.word,game.reward],()=>page.getByRole('button',{name:task.target,exact:true}).click());
-   await page.locator('[data-action="next"]').click();
+   if(!assistance)await page.locator('[data-action="next"]').click(); // The pinned legacy page has manual progression.
+   else await page.waitForFunction(({key,round})=>JSON.parse(localStorage.getItem(key)).active?.round===round,{key:KEY,round:active.round+1});
    const next=(await state()).active;
    assert.equal(next.round,active.round+1);
    await heard(engine.instruction(content.BANK.kitchen.find(q=>q.id===next.id)),()=>page.locator('[data-action="repeat"]').click());

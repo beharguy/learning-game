@@ -1,0 +1,19 @@
+[
+  {
+    "id": "8c9878ef",
+    "spokenText": "כּוֹל הַכָּבוֹד! תשובה נכונה!",
+    "file": "scripts/audio-edits/correct-approved.mp3",
+    "sha256": "d0a97ec83f6aa0879dfa7c50e03fcc9d6dada1fd6ce247dd0b1117564c9a68f7",
+    "source": "scripts/audio-edits/correct-source.mp3",
+    "sourceSha256": "561b41fec61211a4ab9804f121628824c17304fe72cc799e6fa786869095f525",
+    "filter": "[0:a]asplit=2[left][right];[left]atrim=end=2.315,asetpts=PTS-STARTPTS[a];[right]atrim=start=2.405,asetpts=PTS-STARTPTS[b];[a][b]acrossfade=d=0.003:c1=tri:c2=tri[out]",
+    "encoding": {
+      "codec": "libmp3lame",
+      "bitrate": "48k",
+      "sampleRate": 24000
+    },
+    "description": "Shorten only the opening of תשובה by removing 90 ms and joining with a 3 ms crossfade. Preserve the rest of the Hila -12% recording.",
+    "approvedOn": "2026-11-08",
+    "approval": "האם בגרסה הזו הת׳ במילה „תשובה” כבר קצרה וטבעית מספיק? — כן, נשמע נכון"
+  }
+]

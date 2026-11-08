@@ -8,7 +8,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 let storageOK=true,state;
 try{state=cleanState(JSON.parse(localStorage.getItem(KEY)||'null'),JSON.parse(localStorage.getItem('hebrew-garden-v1')||'null'));}catch{state=freshState();storageOK=false;}
 let pendingImport=null;
-let session=null,installEvent=null,transitionTimer=null,toastTimer=null,modalFocus=null,updateWaiting=null,offlineReady=false,reloadForUpdate=false;
+let session=null,installEvent=null,transitionTimer=null,feedbackRun=0,toastTimer=null,modalFocus=null,updateWaiting=null,offlineReady=false,reloadForUpdate=false;
 const audio=new Audio();audio.preload='auto';audio.hidden=true;audio.id='narration-audio';document.body.append(audio);
 const voice=new VoicePlayer(audio,()=>notify('אֶפְשָׁר לִלְחֹץ עַל הָרַמְקוֹל כְּדֵי לִשְׁמֹעַ שׁוּב.'));
 const speak=(text,force=false)=>voice.play(Array.isArray(text)?text:[text],{enabled:state.sound,force});
@@ -17,7 +17,8 @@ const pic=(p,cls='')=>{const i=objects.indexOf(p);return i>=0?`<span class="pict
 const btn=(action,label,body,cls='',extra='')=>`<button type="button" class="${cls}" data-action="${action}" aria-label="${esc(label)}" ${extra}>${body}</button>`;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{storageOK=false;notify('השמירה אינה זמינה בדפדפן הזה. אפשר להמשיך לשחק.');}}
 function notify(text){const el=document.querySelector('#toast');if(!el)return;el.textContent=text;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),4200);}
-function go(path){clearTimeout(transitionTimer);voice.stop();if(location.hash==='#'+path)render();else location.hash=path;}
+function cancelAdvance(){clearTimeout(transitionTimer);transitionTimer=null;feedbackRun++;}
+function go(path){cancelAdvance();voice.stop();if(location.hash==='#'+path)render();else location.hash=path;}
 const path=()=>location.hash.slice(1).split('/');
 const asset=name=>`./assets/neighborhood/${name}.webp`;
 function scene(name,content,classes=''){
@@ -61,7 +62,7 @@ function puppetMarkup(q){
 }
 function puzzle(q,game){
  if(game.id==='kitchen')return `<section class="puzzle kitchen-puzzle" aria-label="המילה להשלמה"><div class="recipe-picture">${pic(q.picture)}</div><div class="word-parts ${q.parts.length>2?'many-parts':''}" dir="rtl">${partMarkup(q)}</div></section>`;
- if(game.id==='garden')return `<section class="puzzle garden-puzzle"><button class="speech-bubble" data-action="hear-cue" aria-label="שמיעת מילת הרמז">${icon('volume')}${pic(q.picture)}<span class="sound-symbol">${q.type==='rhyme'?'♫':q.type==='ending'?'←':'→'}</span></button><div class="garden-growth" aria-hidden="true">${Array.from({length:Math.min(state.stats.garden?.correct||0,7)},(_,i)=>`<span style="--i:${i}">🌷</span>`).join('')}</div></section>`;
+ if(game.id==='garden')return `<section class="puzzle garden-puzzle"><button class="speech-bubble" data-action="hear-cue" aria-label="שמיעת מילת הרמז" ${session.solved?'disabled':''}>${icon('volume')}${pic(q.picture)}<span class="sound-symbol">${q.type==='rhyme'?'♫':q.type==='ending'?'←':'→'}</span></button><div class="garden-growth" aria-hidden="true">${Array.from({length:Math.min(state.stats.garden?.correct||0,7)},(_,i)=>`<span style="--i:${i}">🌷</span>`).join('')}</div></section>`;
  if(game.id==='workshop')return `<section class="puzzle workshop-puzzle"><div class="workshop-cue">${q.picture?pic(q.picture):q.type==='stamp'?`<span class="mark-hint">${esc(q.prompt.split('עִם ')[1]||'')}</span>`:''}</div><div class="workshop-sign ${q.display?.length>10?'compact':''}">${q.type==='stamp'?`<span class="letter-base">${esc(session.solved?q.completion:q.base)}</span>${!session.solved?'<span class="stamp-slot">✦</span>':''}`:`<span class="formula" dir="rtl">${esc(q.display||'◌')}</span>`}</div></section>`;
  if(game.id==='boat')return `<section class="puzzle boat-puzzle"><div class="cargo-label">${esc(q.label)}</div>${session.solved?'<div class="flying-parcel" aria-hidden="true">🎁</div>':''}</section>`;
  if(game.id==='theater')return puppetMarkup(q)+`<section class="puzzle theater-puzzle"><div class="script-line ${q.sentence.length>25?'compact':''}" dir="rtl">${esc(q.sentence).replace('____',`<span class="script-gap">${session.solved?esc(q.target):'✦'}</span>`)}</div></section><div class="stage-action ${session.solved?'performing':''} ${q.animation||'bow'}" aria-hidden="true"><span>${pic(q.picture||'🎵')}</span></div>`;
@@ -82,14 +83,14 @@ function gameScreen(){
  return scene(g.asset,puzzle(q,g)+answerMarkup(q,g)+reward+repair,`game-scene ${g.id}-scene ${session.solved?'solved':''}`)+controls(g.name,{game:true})+
  `<div class="round-progress" aria-label="התקדמות בסבב">${Array.from({length:SESSION_SIZE},(_,i)=>`<span class="${i<session.round+(session.solved?1:0)?'filled':''}">${icon('star')}</span>`).join('')}</div>
  <div class="instruction-strip" role="status">${session.solved?g.reward:esc(q.prompt)}</div>
- ${session.solved?btn('next','להמשיך',`${icon('left')}<span>${session.round+1===SESSION_SIZE?'סִיַּמְנוּ!':'עוֹד אֶחָד'}</span>`,'next-button'):btn('demo','הדגמה — איך משחקים',icon('play'),'demo-button')}`;
+ ${session.solved?'':btn('demo','הדגמה — איך משחקים',icon('play'),'demo-button')}`;
 }
 function finishScreen(){
  const g=session.game,score=state.stats[g.id]?.correct||0;
  return scene(g.asset,'','finish-scene')+`<section class="finish-card"><div class="finish-symbol">${pic(g.symbol)}</div><h1>${g.reward}</h1><p>אֵיזֶה כֵּיף לְשַׂחֵק יַחַד!</p><div class="celebration-stars">★ ★ ★</div><div class="finish-actions">${btn('again','עוד סבב אצל '+g.person,`${icon('play')} עוֹד סִבּוּב`,'start-button')}${btn('home','לבחור חבר אחר',`${icon('home')} לַשְּׁכוּנָה`,'secondary-button')}</div><small>${score} ${g.verb} בשכונה שלך</small></section>`+controls('',{home:true});
 }
 function render(){
- clearTimeout(transitionTimer);voice.stop();const [page,id]=path();
+ cancelAdvance();voice.stop();const [page,id]=path();
  document.documentElement.classList.toggle('reduced-motion',!state.motion);
  if(page==='play'){
   if(!session||session.game.id!==id||session.finished){if(!createSession(id)){location.hash='map';return;}}
@@ -100,7 +101,7 @@ function render(){
  app.insertAdjacentHTML('beforeend','<div id="toast" role="status" aria-live="polite"></div><div id="modal-root"></div><div id="live-result" class="sr-only" role="status" aria-live="polite"></div>');
  if(!storageOK)notify('השמירה אינה זמינה. אפשר להמשיך לשחק.');
  if(page==='play'){
-  speak(instruction(session.q));
+  if(session.solved)playSuccess();else speak(instruction(session.q));
   if(!state.tutorials[session.game.id]){state.tutorials[session.game.id]=true;save();showDemo(false);}
  }else if(page==='map')speak(SAY.map);
  else if(page==='finish')speak(SAY.finish);
@@ -126,17 +127,30 @@ function answer(i){
  session.solved=true;recordSuccess(state,session.game.id,session.helped);state.active=null;save();
  app.innerHTML=gameScreen()+'<div id="toast" role="status" aria-live="polite"></div><div id="modal-root"></div><div id="live-result" class="sr-only" role="status" aria-live="polite">תשובה נכונה</div>';
  if(session.game.id==='boat')document.querySelector('.flying-parcel')?.style.setProperty('--dock',i===0?'70%':'-42%');
- speak([SAY.correct,q.word||q.completed||q.explanation,session.game.reward]);
- document.querySelector('.next-button')?.focus({preventScroll:true});
+ playSuccess();
+}
+async function playSuccess(force=false){
+ cancelAdvance();
+ const current=session,q=current?.q,run=feedbackRun,started=performance.now();
+ const stillHere=()=>!!current&&run===feedbackRun&&session===current&&session.q===q&&session.solved&&!session.finished&&path()[0]==='play'&&path()[1]===session.game.id&&!document.hidden&&!document.querySelector('.modal');
+ if(!stillHere())return;
+ // VoicePlayer resolves after the entire queue, or when playback is unavailable.
+ // A repeat, navigation or backgrounding invalidates this run before stopping it.
+ await speak([SAY.correct,q.word||q.completed||q.explanation,current.game.reward],force);
+ if(!stillHere())return;
+ // Keep the celebration visible in silent/error mode, then leave a small breath
+ // between the completed feedback and the next question's narration.
+ transitionTimer=setTimeout(()=>{if(stillHere())next();},Math.max(350,1500-(performance.now()-started)));
 }
 function next(){
  if(!session?.solved)return;
+ cancelAdvance();
  session.round++;
  if(session.round>=SESSION_SIZE){session.finished=true;state.stats[session.game.id].rounds++;save();go('finish');return;}
  session.q=nextQuestion(state,session.game.id);session.solved=false;session.helped=false;session.errors=0;session.wrong=[];persistActive();render();
 }
 function modal(html){
- modalFocus=document.activeElement;voice.stop();
+ modalFocus=document.activeElement;cancelAdvance();voice.stop();
  document.querySelector('#modal-root').innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">${btn('close-modal','סגירה',icon('close'),'modal-close')}${html}</section></div>`;
  document.querySelector('.modal button, .modal input')?.focus();
 }
@@ -145,7 +159,7 @@ function parents(){
  const rows=summary(state),total=Object.values(BANK).reduce((n,qs)=>n+qs.length,0);
  modal(`<h2 id="modal-title">השכונה של עלמה — להורים</h2><p>עד איזה עמוד אפשר לתרגל? תמיד אפשר לחזור לחומר שכבר נלמד.</p><label>לומדים עד עמוד <output id="page-value">${state.page}</output><input id="page-range" type="range" min="4" max="79" value="${state.page}"></label><label class="select-label">רמת הקושי<select id="difficulty"><option value="auto" ${state.level==='auto'?'selected':''}>הדרגתית — מתחילים פשוט ומתקדמים</option><option value="all" ${state.level==='all'?'selected':''}>כל הרמות עד העמוד שנבחר</option></select></label><div class="setting-toggles"><label><input id="sound-setting" type="checkbox" ${state.sound?'checked':''}> הקראה בקול של הילה</label><label><input id="motion-setting" type="checkbox" ${state.motion?'checked':''}> תנועה וחגיגות</label></div><p class="parent-note">${total} משימות במאגר. סדר המשימות והתשובות משתנה. משימות שכבר הוצגו נשמרות במכשיר, וחוזרות אחרי מיצוי המאגר הזמין ברמה הנוכחית.</p><table><thead><tr><th>משחק</th><th>זמינות</th><th>עצמאית</th><th>עם עזרה</th></tr></thead><tbody>${rows.map(g=>`<tr><td>${g.symbol} ${g.person}</td><td>${g.count}</td><td>${g.independent||0}</td><td>${g.helped||0}</td></tr>`).join('')}</tbody></table><p class="parent-note">ההוראות מנוסחות ללא פנייה בזכר או בנקבה. דוגמאות הלימוד שומרות על ההתאמה הדקדוקית לדמות. עזרה בקריאת תשובה או ניסיון נוסף נרשמים כהצלחה עם עזרה. הגדרות והתקדמות נשמרות בדפדפן הזה.</p><div class="parent-actions">${updateWaiting?btn('update','טעינת הגרסה החדשה','טעינת הגרסה החדשה','text-button'):''}${btn('save-parents','שמירת ההגדרות','שמירה וחזרה לשכונה','secondary-button')}${btn('install','הוספה למסך הבית','הוספה למסך הבית','text-button')}${btn('export','שמירת גיבוי','שמירת גיבוי','text-button')}${btn('import','טעינת גיבוי','טעינת גיבוי','text-button')}<input type="file" id="import-file" accept="application/json" hidden>${btn('reset-prompt','איפוס התקדמות','איפוס התקדמות','text-button')}</div><p class="offline-status" id="offline-status">${offlineReady?'המשחק מוכן גם ללא חיבור לרשת במכשיר הזה.':'התוכן נשמר למכשיר. בפתיחה הראשונה השאירו את המשחק פתוח עם חיבור לרשת.'}</p>`);
 }
-function closeModal(){document.querySelector('#modal-root').innerHTML='';modalFocus?.focus?.();}
+function closeModal(){document.querySelector('#modal-root').innerHTML='';modalFocus?.focus?.();if(session?.solved&&path()[0]==='play')playSuccess();}
 async function install(){if(installEvent){await installEvent.prompt();installEvent=null;return;}modal('<h2 id="modal-title">המשחק במסך הבית</h2><p>בטאבלט Android: פתחו ב־Chrome את תפריט שלוש הנקודות, גללו למטה ובחרו <b>״התקנה ויצירת קיצור דרך״</b> או <b>״הוספה למסך הבית״</b>.</p><p>ב־iPad: ב־Safari לחצו על שיתוף ובחרו ״הוספה למסך הבית״.</p>');}
 app.addEventListener('click',async event=>{
  const el=event.target.closest('[data-action]');if(!el||el.disabled)return;
@@ -155,9 +169,8 @@ app.addEventListener('click',async event=>{
   case 'visit': begin(el.dataset.game);break;
   case 'resume': begin(state.active?.game||state.lastGame);break;
   case 'answer': answer(Number(el.dataset.index));break;
-  case 'next': next();break;
   case 'again': {const id=session.game.id;state.active=null;session=null;begin(id);break;}
-  case 'repeat': speak(session&&path()[0]==='play'?instruction(session.q):path()[0]==='map'?SAY.map:SAY.welcome,true);break;
+  case 'repeat': if(session?.solved&&path()[0]==='play')playSuccess(true);else speak(session&&path()[0]==='play'?instruction(session.q):path()[0]==='map'?SAY.map:SAY.welcome,true);break;
   case 'hear-cue': speak(session.q.cue,true);break;
   case 'hear-option': speak(session.q.choices[Number(el.dataset.index)].text,true);break;
   case 'help': if(!session.solved){session.helped=true;persistActive();document.querySelectorAll('.answer').forEach(e=>e.classList.add('help-available'));speak(helpSpeech(session.q),true);if(++session.errors>=2)document.querySelectorAll('.answer')[session.q.choices.findIndex(o=>o.text===session.q.target)]?.classList.add('gentle-hint');}break;
@@ -190,8 +203,8 @@ document.addEventListener('keydown',e=>{
 });
 window.addEventListener('hashchange',render);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvent=e;});
-window.addEventListener('pagehide',()=>{voice.stop();if(session&&!session.solved)persistActive();});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)voice.stop();});
+window.addEventListener('pagehide',()=>{cancelAdvance();voice.stop();if(session&&!session.solved)persistActive();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAdvance();voice.stop();}else if(session?.solved&&path()[0]==='play')playSuccess();});
 if('serviceWorker'in navigator){
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadForUpdate)location.reload();});
  navigator.serviceWorker.ready.then(()=>{offlineReady=true;const status=document.querySelector('#offline-status');if(status)status.textContent='המשחק מוכן גם ללא חיבור לרשת במכשיר הזה.';});
