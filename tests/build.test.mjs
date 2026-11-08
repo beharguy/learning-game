@@ -23,3 +23,18 @@ test('offline audio supports byte ranges requested by tablet browsers',async()=>
   listeners.fetch({request:{method:'GET',url:'https://garden.test/audio/test.mp3',headers:new Headers({range:'bytes=9-'})},respondWith:p=>pending=p});
   assert.equal((await pending).status,416);
 });
+test('an update bypasses stale HTTP assets and activates only after a complete download',async()=>{
+ const source=await readFile('dist/sw.js','utf8');
+ for(const fail of [false,true]){
+  const listeners={};let pending,finish,started=false,activated=false;
+  const download=new Promise((resolve,reject)=>{finish=()=>fail?reject(new Error('download failed')):resolve();});
+  vm.runInNewContext(source,{
+   self:{addEventListener:(type,handler)=>listeners[type]=handler,skipWaiting:()=>{activated=true;}},
+   Request:class {constructor(url,options){this.url=url;this.cache=options.cache;}},
+   caches:{open:async()=>({addAll:requests=>{started=true;assert.ok(requests.length>850);assert.ok(requests.every(r=>r.cache==='reload'));return download;}})}
+  });
+  listeners.install({waitUntil:p=>pending=p});await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(started);assert.equal(activated,false);finish();
+  if(fail){await assert.rejects(pending,/download failed/);assert.equal(activated,false);}else{await pending;assert.equal(activated,true);}
+ }
+});
