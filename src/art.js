@@ -1,6 +1,8 @@
 export function icon(name, cls='') {
   const paths={
     play:'<path d="m8 4 12 8-12 8Z" fill="currentColor" stroke="none"/>',
+    pause:'<path d="M8 5v14M16 5v14" stroke-width="4"/>',
+    sparkle:'<path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/>',
     sprout:'<path d="M12 21v-9M12 16C5 16 3 12 3 6c6 0 9 3 9 10ZM12 12c0-6 3-9 9-9 0 6-3 9-9 9Z"/>',
     flower:'<path d="M12 21v-6m0 5c-5 0-6-2-6-4 4 0 6 1 6 4"/><path d="M12 4c-4-7-9 1-5 4-6 3 0 9 5 5 5 4 11-2 5-5 4-3-1-11-5-4Z"/><circle cx="12" cy="9" r="2"/>',
     leaf:'<path d="M20 3C8 2 1 6 4 15s16 6 16-12ZM4 21 15 10"/>',

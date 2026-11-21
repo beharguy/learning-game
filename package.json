@@ -14,7 +14,8 @@
     "test:auto-advance": "node scripts/qa-auto-advance.mjs",
     "test:map": "node scripts/qa-map-layout.mjs",
     "test:release": "node scripts/qa-release.mjs",
-    "test:audio-update": "node scripts/qa-audio-update.mjs"
+    "test:audio-update": "node scripts/qa-audio-update.mjs",
+    "test:reading": "node scripts/qa-reading.mjs"
   },
   "engines": {
     "node": ">=20"

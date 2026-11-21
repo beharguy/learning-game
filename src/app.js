@@ -2,6 +2,7 @@ import { GAMES, BANK, SAY } from './neighborhood/content.js';
 import { KEY, SESSION_SIZE, cleanState, freshState, available, readyGames, materialize, nextQuestion, recordSuccess, instruction, helpSpeech, summary } from './neighborhood/engine.js';
 import { icon, visual } from './art.js';
 import { VoicePlayer } from './voice-player.js';
+import { createStoryReader } from './reading/ui.js';
 
 const app=document.querySelector('#app');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -12,13 +13,15 @@ let session=null,installEvent=null,transitionTimer=null,feedbackRun=0,toastTimer
 const audio=new Audio();audio.preload='auto';audio.hidden=true;audio.id='narration-audio';document.body.append(audio);
 const voice=new VoicePlayer(audio,()=>notify('אֶפְשָׁר לִלְחֹץ עַל הָרַמְקוֹל כְּדֵי לִשְׁמֹעַ שׁוּב.'));
 const speak=(text,force=false)=>voice.play(Array.isArray(text)?text:[text],{enabled:state.sound,force});
+const reader=createStoryReader({root:app,audio,voice,getState:()=>state,saveProgress:reading=>{state.reading=reading;save();},navigate:go,storageAvailable:()=>storageOK});
+const storyLaunch=()=>`<button class="story-launch" data-action="stories" aria-label="הסיפורים שלי — דן והצב ורן בגן"><span aria-hidden="true">📖</span><span>הַסִּפּוּרִים שֶׁלִּי<small>צְלִילִים, מִלִּים וְסִפּוּר</small></span>${icon('play')}</button>`;
 const objects=['🍲','🍎','🍌','🥕','🐇','🐈','🎁','🎈','🌙','🌳','🏠','🦆','🔑','📓','pencilcase','eraser','🪞','date','🍞','🥛','🌊','⛰️','⚡','🌸','🐊','🐓','🚂','🚦','🦁','🐘','❤️','⭐','☁️','🌧️','🌈','🐭'];
 const pic=(p,cls='')=>{const i=objects.indexOf(p);return i>=0?`<span class="picture object-sprite ${cls}" aria-hidden="true" style="background-position:${i%6*20}% ${Math.floor(i/6)*20}%"></span>`:`<span class="picture ${cls}" aria-hidden="true">${visual(p||'✨')}</span>`;};
 const btn=(action,label,body,cls='',extra='')=>`<button type="button" class="${cls}" data-action="${action}" aria-label="${esc(label)}" ${extra}>${body}</button>`;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{storageOK=false;notify('השמירה אינה זמינה בדפדפן הזה. אפשר להמשיך לשחק.');}}
 function notify(text){const el=document.querySelector('#toast');if(!el)return;el.textContent=text;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),4200);}
 function cancelAdvance(){clearTimeout(transitionTimer);transitionTimer=null;feedbackRun++;}
-function go(path){cancelAdvance();voice.stop();if(location.hash==='#'+path)render();else location.hash=path;}
+function go(path){cancelAdvance();reader.stop();voice.stop();if(location.hash==='#'+path)render();else location.hash=path;}
 const path=()=>location.hash.slice(1).split('/');
 const asset=name=>`./assets/neighborhood/${name}.webp`;
 function scene(name,content,classes=''){
@@ -40,7 +43,7 @@ function neighborhood(){
   return `<button class="neighbor ${unlocked?'':'sleeping'} ${rec?.id===g.id?'inviting':''}" data-action="visit" data-game="${g.id}" style="--x:${g.x}%;--y:${g.y}%" aria-label="${esc(g.person)} — ${unlocked?'להתחיל לשחק':`נפתח בעמוד ${g.start}`}" aria-disabled="${!unlocked}"><span class="neighbor-bubble">${unlocked?pic(g.symbol):icon('lock')}<span class="mini-play">${icon(unlocked?'play':'lock')}</span></span><span class="neighbor-ring"></span><span class="neighbor-name">${g.person}${count?` <small>★ ${count}</small>`:''}</span></button>`;
  }).join('');
  return scene('neighborhood',hot,'map-scene')+controls('הַשְּׁכוּנָה שֶׁל עַלְמָה',{home:false,parents:true,map:true})+
- `<footer class="map-footer">${btn('repeat','שמיעת ההוראה שוב',`${icon('volume')} <span>לְחִיצָה עַל דְּמוּת פּוֹתַחַת מִשְׂחָק</span>`,'map-invitation')}${state.lastGame&&state.active?btn('resume','להמשיך מהמשחק האחרון',`${icon('undo')} לְהַמְשִׁיךְ`,'resume-button'):''}</footer>`;
+ `<footer class="map-footer">${storyLaunch()}${btn('repeat','שמיעת ההוראה: לחיצה על דמות פותחת משחק',icon('volume'),'map-invitation')}${state.lastGame&&state.active?btn('resume','להמשיך מהמשחק האחרון',`${icon('undo')} לְהַמְשִׁיךְ`,'resume-button'):''}</footer>`;
 }
 function persistActive(){if(session&&!session.solved)state.active={game:session.game.id,id:session.q.id,round:session.round,helped:session.helped};else state.active=null;save();}
 function createSession(id){
@@ -90,14 +93,20 @@ function finishScreen(){
  return scene(g.asset,'','finish-scene')+`<section class="finish-card"><div class="finish-symbol">${pic(g.symbol)}</div><h1>${g.reward}</h1><p>אֵיזֶה כֵּיף לְשַׂחֵק יַחַד!</p><div class="celebration-stars">★ ★ ★</div><div class="finish-actions">${btn('again','עוד סבב אצל '+g.person,`${icon('play')} עוֹד סִבּוּב`,'start-button')}${btn('home','לבחור חבר אחר',`${icon('home')} לַשְּׁכוּנָה`,'secondary-button')}</div><small>${score} ${g.verb} בשכונה שלך</small></section>`+controls('',{home:true});
 }
 function render(){
- cancelAdvance();voice.stop();const [page,id]=path();
+ cancelAdvance();reader.stop();voice.stop();const [page,id]=path();
  document.documentElement.classList.toggle('reduced-motion',!state.motion);
+ if(['stories','read'].includes(page)){
+  reader.mount(page,id);
+  if(!storageOK)notify('השמירה אינה זמינה בדפדפן הזה. אפשר להמשיך לשחק.');
+  return;
+ }
  if(page==='play'){
   if(!session||session.game.id!==id||session.finished){if(!createSession(id)){location.hash='map';return;}}
   app.innerHTML=gameScreen();
  }else if(page==='finish'&&session)app.innerHTML=finishScreen();
  else if(['map','garden','learn'].includes(page))app.innerHTML=neighborhood();
  else {session=null;app.innerHTML=welcome();}
+ if(!['play','finish','map','garden','learn'].includes(page))app.insertAdjacentHTML('beforeend',storyLaunch());
  app.insertAdjacentHTML('beforeend','<div id="toast" role="status" aria-live="polite"></div><div id="modal-root"></div><div id="live-result" class="sr-only" role="status" aria-live="polite"></div>');
  if(!storageOK)notify('השמירה אינה זמינה. אפשר להמשיך לשחק.');
  if(page==='play'){
@@ -166,6 +175,7 @@ async function install(){if(installEvent){await installEvent.prompt();installEve
 app.addEventListener('click',async event=>{
  const el=event.target.closest('[data-action]');if(!el||el.disabled)return;
  switch(el.dataset.action){
+  case 'stories': if(session&&!session.solved)persistActive();session=null;go('stories');break;
   case 'enter': go('map');break;
   case 'home': if(session)persistActive();session=null;go('map');break;
   case 'visit': begin(el.dataset.game);break;
@@ -205,7 +215,7 @@ document.addEventListener('keydown',e=>{
 });
 window.addEventListener('hashchange',render);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvent=e;});
-window.addEventListener('pagehide',()=>{cancelAdvance();voice.stop();if(session&&!session.solved)persistActive();});
+window.addEventListener('pagehide',()=>{cancelAdvance();reader.stop();voice.stop();if(session&&!session.solved)persistActive();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAdvance();voice.stop();}else if(session?.solved&&path()[0]==='play')playSuccess();});
 if('serviceWorker'in navigator){
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadForUpdate)location.reload();});

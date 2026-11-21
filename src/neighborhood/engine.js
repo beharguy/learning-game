@@ -1,15 +1,17 @@
 import { BANK, GAMES, SAY } from './content.js';
 import { shuffle } from '../engine.js';
+import { cleanReading } from '../reading/progress.js';
 export const KEY='alma-neighborhood-v2';
 export const SESSION_SIZE=6;
 const safeInt=(x,max=100000)=>Number.isSafeInteger(x)&&x>=0?Math.min(x,max):0;
 export function freshState(legacy={}){
- return {version:2,page:Number.isInteger(legacy?.page)?Math.max(4,Math.min(79,legacy.page)):79,sound:legacy?.sound!==false,motion:true,level:'auto',seen:{},stats:{},tutorials:{},lastGame:null,active:null};
+ return {version:2,page:Number.isInteger(legacy?.page)?Math.max(4,Math.min(79,legacy.page)):79,sound:legacy?.sound!==false,motion:true,level:'auto',seen:{},stats:{},tutorials:{},lastGame:null,active:null,reading:cleanReading()};
 }
 export function cleanState(raw,legacy){
  const s=freshState(legacy);if(raw?.version!==2)return s;
  s.page=Number.isInteger(raw.page)?Math.max(4,Math.min(79,raw.page)):79;
  s.sound=raw.sound!==false;s.motion=raw.motion!==false;s.level=['auto','all'].includes(raw.level)?raw.level:'auto';
+ s.reading=cleanReading(raw.reading);
  for(const g of GAMES){
   const ids=new Set(BANK[g.id].map(q=>q.id));
   s.seen[g.id]=[...new Set(Array.isArray(raw.seen?.[g.id])?raw.seen[g.id].filter(id=>ids.has(id)):[])];

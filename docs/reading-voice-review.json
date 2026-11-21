@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-21",
+  "reviewer": "parent",
+  "note": "Parent approved da and Dan, both alone and inside the two sample lines.",
+  "clips": {
+    "sound-da": {
+      "text": "דָא",
+      "sha256": "aa1ab7bd425644868e3e7607787deb7961c552146d5c9ff8902dd3035baf7aca"
+    },
+    "word-dan": {
+      "text": "דן",
+      "sha256": "8362a33cb774e2d86fcc362bbb52364df7148d22206a3caaa4cc440bf90c74e0"
+    },
+    "line-dan-0": {
+      "text": "דן בָּא לַגַּן.",
+      "sha256": "71ddb86ecef3b39b396feb6f5c968b88eb9cbd465216692068d1fce09195de60"
+    },
+    "line-dan-3": {
+      "text": "דן נָתַן חַסָּה לַצָּב.",
+      "sha256": "33704a98e6daf257fccc84d67105a5f56ea83c1bcb98d609d87abb620b4a3e9d"
+    }
+  }
+}

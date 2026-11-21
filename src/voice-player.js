@@ -8,7 +8,7 @@ export class VoicePlayer {
     this.finish?.(false);this.finish=null;
     this.audio.onended=null;this.audio.onerror=null;
   }
-  async play(texts,{enabled=true,force=false}={}){
+  async play(texts,{enabled=true,force=false,source=text=>`./audio/${audioKey(text)}.mp3`,rate=1,onClip=()=>{}}={}){
     this.stop();
     if(!enabled&&!force)return false;
     const run=this.run;
@@ -22,7 +22,9 @@ export class VoicePlayer {
         this.finish=finish;
         this.audio.onended=()=>finish(true);
         this.audio.onerror=()=>{if(run===this.run)this.onBlocked();finish(false);};
-        this.audio.src=`./audio/${audioKey(text)}.mp3`;
+        this.audio.src=source(text);
+        this.audio.playbackRate=rate;
+        onClip(text);
         this.audio.play().catch(()=>{if(run===this.run)this.onBlocked();finish(false);});
       });
       if(!ok)return false;

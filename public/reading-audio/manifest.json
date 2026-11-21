@@ -1,0 +1,1119 @@
+{
+  "voice": "he-IL-HilaNeural",
+  "rate": "-12%",
+  "clips": {
+    "cue-blend": {
+      "text": "נחבר צלילים למילה. לחיצה על הרמקול מחברת. אפשר גם לגעת בחלקים.",
+      "digest": "bd5d0bce3b62d494",
+      "boundaries": [
+        {
+          "start": 0.149416,
+          "duration": 0.525583,
+          "text": "נחבר"
+        },
+        {
+          "start": 0.675,
+          "duration": 0.454541,
+          "text": "צלילים"
+        },
+        {
+          "start": 1.129541,
+          "duration": 0.568166,
+          "text": "למילה"
+        },
+        {
+          "start": 2.670458,
+          "duration": 0.625,
+          "text": "לחיצה"
+        },
+        {
+          "start": 3.295458,
+          "duration": 0.085208,
+          "text": "על"
+        },
+        {
+          "start": 3.380666,
+          "duration": 0.568166,
+          "text": "הרמקול"
+        },
+        {
+          "start": 3.948875,
+          "duration": 0.909083,
+          "text": "מחברת"
+        },
+        {
+          "start": 5.804541,
+          "duration": 0.539791,
+          "text": "אפשר"
+        },
+        {
+          "start": 6.344333,
+          "duration": 0.198833,
+          "text": "גם"
+        },
+        {
+          "start": 6.543166,
+          "duration": 0.411916,
+          "text": "לגעת"
+        },
+        {
+          "start": 6.955125,
+          "duration": 0.880666,
+          "text": "בחלקים"
+        }
+      ]
+    },
+    "cue-choose": {
+      "text": "שני סיפורים מחכים לנו. נבחר בצב או בחתול, ונתחיל בצעד קטן.",
+      "digest": "2af98c025ca32576",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.426125,
+          "text": "שני"
+        },
+        {
+          "start": 0.526125,
+          "duration": 0.539791,
+          "text": "סיפורים"
+        },
+        {
+          "start": 1.065916,
+          "duration": 0.482958,
+          "text": "מחכים"
+        },
+        {
+          "start": 1.548875,
+          "duration": 0.411916,
+          "text": "לנו"
+        },
+        {
+          "start": 2.954541,
+          "duration": 0.440333,
+          "text": "נבחר"
+        },
+        {
+          "start": 3.394875,
+          "duration": 0.46875,
+          "text": "בצב"
+        },
+        {
+          "start": 3.863625,
+          "duration": 0.085208,
+          "text": "או"
+        },
+        {
+          "start": 3.948875,
+          "duration": 0.767041,
+          "text": "בחתול"
+        },
+        {
+          "start": 5.014208,
+          "duration": 0.596583,
+          "text": "ונתחיל"
+        },
+        {
+          "start": 5.610791,
+          "duration": 0.440333,
+          "text": "בצעד"
+        },
+        {
+          "start": 6.051125,
+          "duration": 0.653416,
+          "text": "קטן"
+        }
+      ]
+    },
+    "cue-finish": {
+      "text": "הסיפור שלנו הושלם! אפשר לקרוא שוב, לבחור סיפור אחר, או לנוח.",
+      "digest": "dc71940954ce309b",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.53975,
+          "text": "הסיפור"
+        },
+        {
+          "start": 0.660791,
+          "duration": 0.426125,
+          "text": "שלנו"
+        },
+        {
+          "start": 1.086916,
+          "duration": 0.767041,
+          "text": "הושלם"
+        },
+        {
+          "start": 2.807375,
+          "duration": 0.454541,
+          "text": "אפשר"
+        },
+        {
+          "start": 3.261916,
+          "duration": 0.298291,
+          "text": "לקרוא"
+        },
+        {
+          "start": 3.560208,
+          "duration": 0.596583,
+          "text": "שוב"
+        },
+        {
+          "start": 4.384083,
+          "duration": 0.454541,
+          "text": "לבחור"
+        },
+        {
+          "start": 4.838625,
+          "duration": 0.383541,
+          "text": "סיפור"
+        },
+        {
+          "start": 5.222166,
+          "duration": 0.568166,
+          "text": "אחר"
+        },
+        {
+          "start": 6.046041,
+          "duration": 0.241458,
+          "text": "או"
+        },
+        {
+          "start": 6.2875,
+          "duration": 0.767041,
+          "text": "לנוח"
+        }
+      ]
+    },
+    "cue-line": {
+      "text": "עכשיו נקרא את השורה בקול. אפשר לשמוע אותה, או לגעת במילה לעזרה. אחרי הניסיון, נלחץ על הכוכב.",
+      "digest": "4620c69164b9d627",
+      "boundaries": [
+        {
+          "start": 0.106833,
+          "duration": 0.525541,
+          "text": "עכשיו"
+        },
+        {
+          "start": 0.632375,
+          "duration": 0.369333,
+          "text": "נקרא"
+        },
+        {
+          "start": 1.001708,
+          "duration": 0.085208,
+          "text": "את"
+        },
+        {
+          "start": 1.086916,
+          "duration": 0.411916,
+          "text": "השורה"
+        },
+        {
+          "start": 1.498875,
+          "duration": 0.582375,
+          "text": "בקול"
+        },
+        {
+          "start": 3.034666,
+          "duration": 0.426125,
+          "text": "אפשר"
+        },
+        {
+          "start": 3.460791,
+          "duration": 0.426125,
+          "text": "לשמוע"
+        },
+        {
+          "start": 3.886916,
+          "duration": 0.553958,
+          "text": "אותה"
+        },
+        {
+          "start": 4.725,
+          "duration": 0.227291,
+          "text": "או"
+        },
+        {
+          "start": 4.952291,
+          "duration": 0.440333,
+          "text": "לגעת"
+        },
+        {
+          "start": 5.392625,
+          "duration": 0.440333,
+          "text": "במילה"
+        },
+        {
+          "start": 5.832958,
+          "duration": 0.596583,
+          "text": "לעזרה"
+        },
+        {
+          "start": 7.379541,
+          "duration": 0.497166,
+          "text": "אחרי"
+        },
+        {
+          "start": 7.876708,
+          "duration": 0.894875,
+          "text": "הניסיון"
+        },
+        {
+          "start": 9.055666,
+          "duration": 0.539791,
+          "text": "נלחץ"
+        },
+        {
+          "start": 9.595458,
+          "duration": 0.099416,
+          "text": "על"
+        },
+        {
+          "start": 9.694875,
+          "duration": 0.724416,
+          "text": "הכוכב"
+        }
+      ]
+    },
+    "cue-pause": {
+      "text": "אפשר לנוח. המקום שלנו נשמר. נחזור כשיתאים.",
+      "digest": "b0d91fa1a560d2a0",
+      "boundaries": [
+        {
+          "start": 0.106833,
+          "duration": 0.454541,
+          "text": "אפשר"
+        },
+        {
+          "start": 0.561375,
+          "duration": 0.795458,
+          "text": "לנוח"
+        },
+        {
+          "start": 2.310208,
+          "duration": 0.568166,
+          "text": "המקום"
+        },
+        {
+          "start": 2.878416,
+          "duration": 0.411916,
+          "text": "שלנו"
+        },
+        {
+          "start": 3.290333,
+          "duration": 0.710208,
+          "text": "נשמר"
+        },
+        {
+          "start": 5.0,
+          "duration": 0.511375,
+          "text": "נחזור"
+        },
+        {
+          "start": 5.511375,
+          "duration": 0.894875,
+          "text": "כשיתאים"
+        }
+      ]
+    },
+    "cue-retry": {
+      "text": "נקשיב שוב. אפשר לחבר את הצלילים בעזרת הכפתור עם החלקים.",
+      "digest": "6388528dc38a6786",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.454541,
+          "text": "נקשיב"
+        },
+        {
+          "start": 0.589791,
+          "duration": 0.610791,
+          "text": "שוב"
+        },
+        {
+          "start": 2.152291,
+          "duration": 0.454541,
+          "text": "אפשר"
+        },
+        {
+          "start": 2.606833,
+          "duration": 0.454541,
+          "text": "לחבר"
+        },
+        {
+          "start": 3.061375,
+          "duration": 0.085208,
+          "text": "את"
+        },
+        {
+          "start": 3.146583,
+          "duration": 0.610791,
+          "text": "הצלילים"
+        },
+        {
+          "start": 3.757375,
+          "duration": 0.440333,
+          "text": "בעזרת"
+        },
+        {
+          "start": 4.197708,
+          "duration": 0.610791,
+          "text": "הכפתור"
+        },
+        {
+          "start": 4.808541,
+          "duration": 0.127833,
+          "text": "עם"
+        },
+        {
+          "start": 4.936375,
+          "duration": 0.809666,
+          "text": "החלקים"
+        }
+      ]
+    },
+    "cue-story": {
+      "text": "הנה הסיפור כולו. נקרא בנחת. אפשר לשמוע כל שורה, ולגעת בכל מילה לעזרה.",
+      "digest": "d6b461ad3731e375",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.326666,
+          "text": "הנה"
+        },
+        {
+          "start": 0.447708,
+          "duration": 0.539791,
+          "text": "הסיפור"
+        },
+        {
+          "start": 0.9875,
+          "duration": 0.497166,
+          "text": "כולו"
+        },
+        {
+          "start": 2.471583,
+          "duration": 0.440333,
+          "text": "נקרא"
+        },
+        {
+          "start": 2.911916,
+          "duration": 0.809666,
+          "text": "בנחת"
+        },
+        {
+          "start": 4.668166,
+          "duration": 0.454541,
+          "text": "אפשר"
+        },
+        {
+          "start": 5.122708,
+          "duration": 0.426125,
+          "text": "לשמוע"
+        },
+        {
+          "start": 5.548875,
+          "duration": 0.198833,
+          "text": "כל"
+        },
+        {
+          "start": 5.747708,
+          "duration": 0.596583,
+          "text": "שורה"
+        },
+        {
+          "start": 6.656833,
+          "duration": 0.610791,
+          "text": "ולגעת"
+        },
+        {
+          "start": 7.267625,
+          "duration": 0.397708,
+          "text": "בכל"
+        },
+        {
+          "start": 7.665333,
+          "duration": 0.284083,
+          "text": "מילה"
+        },
+        {
+          "start": 7.949416,
+          "duration": 0.596583,
+          "text": "לעזרה"
+        }
+      ]
+    },
+    "cue-together": {
+      "text": "נקרא יחד, לאט.",
+      "digest": "7365a081a58f7538",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.355125,
+          "text": "נקרא"
+        },
+        {
+          "start": 0.490333,
+          "duration": 0.724416,
+          "text": "יחד"
+        },
+        {
+          "start": 1.513083,
+          "duration": 0.738625,
+          "text": "לאט"
+        }
+      ]
+    },
+    "cue-word": {
+      "text": "איזו מילה שמענו? נקרא את הכרטיסים בקול, ונבחר את המילה המתאימה.",
+      "digest": "df26d1d450f84783",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.411916,
+          "text": "איזו"
+        },
+        {
+          "start": 0.511916,
+          "duration": 0.298291,
+          "text": "מילה"
+        },
+        {
+          "start": 0.810208,
+          "duration": 0.681833,
+          "text": "שמענו"
+        },
+        {
+          "start": 2.452291,
+          "duration": 0.454541,
+          "text": "נקרא"
+        },
+        {
+          "start": 2.906833,
+          "duration": 0.085208,
+          "text": "את"
+        },
+        {
+          "start": 2.992041,
+          "duration": 0.639208,
+          "text": "הכרטיסים"
+        },
+        {
+          "start": 3.63125,
+          "duration": 0.625,
+          "text": "בקול"
+        },
+        {
+          "start": 4.540333,
+          "duration": 0.625,
+          "text": "ונבחר"
+        },
+        {
+          "start": 5.165333,
+          "duration": 0.085208,
+          "text": "את"
+        },
+        {
+          "start": 5.250583,
+          "duration": 0.369291,
+          "text": "המילה"
+        },
+        {
+          "start": 5.619875,
+          "duration": 0.724416,
+          "text": "המתאימה"
+        }
+      ]
+    },
+    "line-dan-0": {
+      "text": "דן בָּא לַגַּן.",
+      "digest": "fe88ef9102c4a74d",
+      "boundaries": [
+        {
+          "start": 0.149416,
+          "duration": 0.326708,
+          "text": "דן"
+        },
+        {
+          "start": 0.476125,
+          "duration": 0.142041,
+          "text": "בָּא"
+        },
+        {
+          "start": 0.618166,
+          "duration": 0.696041,
+          "text": "לַגַּן"
+        }
+      ]
+    },
+    "line-dan-1": {
+      "text": "דן רָאָה צָב.",
+      "digest": "c179b8d275a58761",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.340916,
+          "text": "דן"
+        },
+        {
+          "start": 0.476125,
+          "duration": 0.269875,
+          "text": "רָאָה"
+        },
+        {
+          "start": 0.746041,
+          "duration": 0.625,
+          "text": "צָב"
+        }
+      ]
+    },
+    "line-dan-2": {
+      "text": "הַצָּב זָחַל.",
+      "digest": "39a05563bac80cf9",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.497125,
+          "text": "הַצָּב"
+        },
+        {
+          "start": 0.618166,
+          "duration": 0.667625,
+          "text": "זָחַל"
+        }
+      ]
+    },
+    "line-dan-3": {
+      "text": "דן נָתַן חַסָּה לַצָּב.",
+      "digest": "e4b10d7c8d3ede68",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.326708,
+          "text": "דן"
+        },
+        {
+          "start": 0.461916,
+          "duration": 0.426125,
+          "text": "נָתַן"
+        },
+        {
+          "start": 0.888083,
+          "duration": 0.3835,
+          "text": "חַסָּה"
+        },
+        {
+          "start": 1.271583,
+          "duration": 0.681833,
+          "text": "לַצָּב"
+        }
+      ]
+    },
+    "line-dan-4": {
+      "text": "הַצָּב אָכַל חַסָּה.",
+      "digest": "a6c0a3cfc73718cf",
+      "boundaries": [
+        {
+          "start": 0.106833,
+          "duration": 0.482958,
+          "text": "הַצָּב"
+        },
+        {
+          "start": 0.589791,
+          "duration": 0.284083,
+          "text": "אָכַל"
+        },
+        {
+          "start": 0.873875,
+          "duration": 0.639208,
+          "text": "חַסָּה"
+        }
+      ]
+    },
+    "line-dan-5": {
+      "text": "דן שָׂמַח.",
+      "digest": "597cc401b5b9e352",
+      "boundaries": [
+        {
+          "start": 0.101708,
+          "duration": 0.411916,
+          "text": "דן"
+        },
+        {
+          "start": 0.513625,
+          "duration": 0.78125,
+          "text": "שָׂמַח"
+        }
+      ]
+    },
+    "line-ran-0": {
+      "text": "רָן בָּא לַגַּן.",
+      "digest": "459220d8fea02746",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.326666,
+          "text": "רָן"
+        },
+        {
+          "start": 0.447708,
+          "duration": 0.127833,
+          "text": "בָּא"
+        },
+        {
+          "start": 0.575583,
+          "duration": 0.696041,
+          "text": "לַגַּן"
+        }
+      ]
+    },
+    "line-ran-1": {
+      "text": "רָן רָאָה חָתוּל.",
+      "digest": "7e7a7301d1a010e8",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.326708,
+          "text": "רָן"
+        },
+        {
+          "start": 0.461916,
+          "duration": 0.284083,
+          "text": "רָאָה"
+        },
+        {
+          "start": 0.746041,
+          "duration": 0.696041,
+          "text": "חָתוּל"
+        }
+      ]
+    },
+    "line-ran-2": {
+      "text": "הַחָתוּל קָפַץ עַל הַגַּג.",
+      "digest": "b0fadda1078ce06f",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.553958,
+          "text": "הַחָתוּל"
+        },
+        {
+          "start": 0.675,
+          "duration": 0.497166,
+          "text": "קָפַץ"
+        },
+        {
+          "start": 1.172166,
+          "duration": 0.184666,
+          "text": "עַל"
+        },
+        {
+          "start": 1.356833,
+          "duration": 0.681833,
+          "text": "הַגַּג"
+        }
+      ]
+    },
+    "line-ran-3": {
+      "text": "רָן דָּאַג.",
+      "digest": "d84a8796a2867d13",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.397708,
+          "text": "רָן"
+        },
+        {
+          "start": 0.497708,
+          "duration": 0.653416,
+          "text": "דָּאַג"
+        }
+      ]
+    },
+    "line-ran-4": {
+      "text": "הַחָתוּל יָרַד.",
+      "digest": "aed3bbf3d6d2be00",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.582375,
+          "text": "הַחָתוּל"
+        },
+        {
+          "start": 0.703416,
+          "duration": 0.625,
+          "text": "יָרַד"
+        }
+      ]
+    },
+    "line-ran-5": {
+      "text": "רָן שָׂמַח.",
+      "digest": "dbbb5496d4197dc6",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.440333,
+          "text": "רָן"
+        },
+        {
+          "start": 0.540333,
+          "duration": 0.78125,
+          "text": "שָׂמַח"
+        }
+      ]
+    },
+    "sound-a": {
+      "text": "אַה",
+      "digest": "d5788b9b64972988",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.454541,
+          "text": "אַה"
+        }
+      ]
+    },
+    "sound-da": {
+      "text": "דָא",
+      "digest": "9c51a435a4484882",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.596583,
+          "text": "דָא"
+        }
+      ]
+    },
+    "sound-ha": {
+      "text": "הַה",
+      "digest": "a4112e256b3a02d3",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.596583,
+          "text": "הַה"
+        }
+      ]
+    },
+    "sound-ka": {
+      "text": "קַה",
+      "digest": "7a186ca25801663d",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.582375,
+          "text": "קַה"
+        }
+      ]
+    },
+    "sound-kha": {
+      "text": "חַה",
+      "digest": "13ffa6b2b9fb9201",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.653416,
+          "text": "חַה"
+        }
+      ]
+    },
+    "sound-la": {
+      "text": "לַה",
+      "digest": "969589e11f99ad64",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.610791,
+          "text": "לַה"
+        }
+      ]
+    },
+    "sound-na": {
+      "text": "נַה",
+      "digest": "28eea1e163ae873a",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.610791,
+          "text": "נַה"
+        }
+      ]
+    },
+    "sound-ra": {
+      "text": "רַה",
+      "digest": "4021b9c60656ef12",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.568166,
+          "text": "רַה"
+        }
+      ]
+    },
+    "sound-sa": {
+      "text": "סַה",
+      "digest": "d79dd928a9bc19f6",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.667625,
+          "text": "סַה"
+        }
+      ]
+    },
+    "sound-tsa": {
+      "text": "צַה",
+      "digest": "14baf9197657200f",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.610791,
+          "text": "צַה"
+        }
+      ]
+    },
+    "sound-ya": {
+      "text": "יַה",
+      "digest": "6173edf7eb829571",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.596583,
+          "text": "יַה"
+        }
+      ]
+    },
+    "sound-za": {
+      "text": "זַה",
+      "digest": "d5e6ff5a23a6f59b",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.625,
+          "text": "זַה"
+        }
+      ]
+    },
+    "word-akhal": {
+      "text": "אָכַל",
+      "digest": "428971d4fb510080",
+      "boundaries": [
+        {
+          "start": 0.101708,
+          "duration": 0.767041,
+          "text": "אָכַל"
+        }
+      ]
+    },
+    "word-al": {
+      "text": "עַל",
+      "digest": "678e2d328d17c6c5",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.610791,
+          "text": "עַל"
+        }
+      ]
+    },
+    "word-ba": {
+      "text": "בָּא",
+      "digest": "920718d798667be7",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.596583,
+          "text": "בָּא"
+        }
+      ]
+    },
+    "word-cat": {
+      "text": "חָתוּל",
+      "digest": "65b65cc79c1102a7",
+      "boundaries": [
+        {
+          "start": 0.103416,
+          "duration": 0.866458,
+          "text": "חָתוּל"
+        }
+      ]
+    },
+    "word-daag": {
+      "text": "דָּאַג",
+      "digest": "e79f5c26b8dd0dc0",
+      "boundaries": [
+        {
+          "start": 0.101708,
+          "duration": 0.880666,
+          "text": "דָּאַג"
+        }
+      ]
+    },
+    "word-dan": {
+      "text": "דן",
+      "digest": "e10ea739636e834b",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.767041,
+          "text": "דן"
+        }
+      ]
+    },
+    "word-hagag": {
+      "text": "הַגַּג",
+      "digest": "ed8126aab06876c7",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.852291,
+          "text": "הַגַּג"
+        }
+      ]
+    },
+    "word-hatsav": {
+      "text": "הַצָּב",
+      "digest": "19854c3de16bdf71",
+      "boundaries": [
+        {
+          "start": 0.101708,
+          "duration": 0.894875,
+          "text": "הַצָּב"
+        }
+      ]
+    },
+    "word-kafats": {
+      "text": "קָפַץ",
+      "digest": "7b76fb95fb4eae24",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.965916,
+          "text": "קָפַץ"
+        }
+      ]
+    },
+    "word-khasa": {
+      "text": "חַסָּה",
+      "digest": "e5685527f2e324bc",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.866458,
+          "text": "חַסָּה"
+        }
+      ]
+    },
+    "word-lagan": {
+      "text": "לַגַּן",
+      "digest": "ec00de10815c459b",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.78125,
+          "text": "לַגַּן"
+        }
+      ]
+    },
+    "word-latsav": {
+      "text": "לַצָּב",
+      "digest": "47ef4f419bf45b7d",
+      "boundaries": [
+        {
+          "start": 0.135208,
+          "duration": 0.809666,
+          "text": "לַצָּב"
+        }
+      ]
+    },
+    "word-natan": {
+      "text": "נָתַן",
+      "digest": "5ff667ef70460ade",
+      "boundaries": [
+        {
+          "start": 0.149416,
+          "duration": 0.78125,
+          "text": "נָתַן"
+        }
+      ]
+    },
+    "word-raa": {
+      "text": "רָאָה",
+      "digest": "56e5c8530551fabb",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.696041,
+          "text": "רָאָה"
+        }
+      ]
+    },
+    "word-ran": {
+      "text": "רָן",
+      "digest": "85d56762e584d2bb",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.724416,
+          "text": "רָן"
+        }
+      ]
+    },
+    "word-samakh": {
+      "text": "שָׂמַח",
+      "digest": "33b764808bacb926",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.838083,
+          "text": "שָׂמַח"
+        }
+      ]
+    },
+    "word-thecat": {
+      "text": "הַחָתוּל",
+      "digest": "f91829d9cd6226a0",
+      "boundaries": [
+        {
+          "start": 0.121041,
+          "duration": 0.909083,
+          "text": "הַחָתוּל"
+        }
+      ]
+    },
+    "word-tsav": {
+      "text": "צָב",
+      "digest": "7b6726342e522833",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.78125,
+          "text": "צָב"
+        }
+      ]
+    },
+    "word-yarad": {
+      "text": "יָרַד",
+      "digest": "da3e71518b0ada7b",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.838083,
+          "text": "יָרַד"
+        }
+      ]
+    },
+    "word-zakhal": {
+      "text": "זָחַל",
+      "digest": "3388be90ce98bae9",
+      "boundaries": [
+        {
+          "start": 0.1,
+          "duration": 0.880666,
+          "text": "זָחַל"
+        }
+      ]
+    }
+  }
+}
